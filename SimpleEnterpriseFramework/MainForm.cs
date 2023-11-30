@@ -26,5 +26,12 @@ namespace SimpleEnterpriseFramework
         {
             btnDeleteRow.BackColor = Color.FromArgb(31, 38, 62);
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginForm login = new LoginForm();
+            login.ShowDialog();
+        }
     }
 }

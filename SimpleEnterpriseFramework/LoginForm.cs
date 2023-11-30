@@ -65,6 +65,12 @@ namespace SimpleEnterpriseFramework
                 textBox2.Text = "! Chưa có dữ liệu";
                 textBox2.ForeColor = System.Drawing.Color.Red;
             }
+            if (textBox1.Text != "Account" && textBox2.Text != "Password")
+            {
+                this.Hide();
+                MainForm main = new MainForm();
+                main.ShowDialog();
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
