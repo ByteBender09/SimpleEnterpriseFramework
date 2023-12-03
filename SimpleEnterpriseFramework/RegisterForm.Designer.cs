@@ -29,15 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.txtPasswordRegister = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUserNameRegister = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.txtRePassword = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,45 +48,42 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pn_logo = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnRegister
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(45, 342);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(372, 43);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "REGISTER";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
+            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.ForeColor = System.Drawing.Color.White;
+            this.btnRegister.Location = new System.Drawing.Point(45, 342);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(372, 43);
+            this.btnRegister.TabIndex = 14;
+            this.btnRegister.Text = "REGISTER";
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.register_Click);
             // 
-            // textBox2
+            // txtPasswordRegister
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox2.Location = new System.Drawing.Point(111, 193);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(306, 20);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.TabStop = false;
-            this.textBox2.Text = "Password";
-            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
-            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            this.txtPasswordRegister.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPasswordRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPasswordRegister.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtPasswordRegister.Location = new System.Drawing.Point(111, 193);
+            this.txtPasswordRegister.Name = "txtPasswordRegister";
+            this.txtPasswordRegister.Size = new System.Drawing.Size(306, 20);
+            this.txtPasswordRegister.TabIndex = 12;
+            this.txtPasswordRegister.TabStop = false;
+            this.txtPasswordRegister.Text = "Password";
+            this.txtPasswordRegister.Enter += new System.EventHandler(this.textPassword_Enter);
+            this.txtPasswordRegister.Leave += new System.EventHandler(this.textPassword_Leave);
             // 
             // label8
             // 
@@ -97,17 +97,17 @@
             this.label8.Text = "label8";
             this.label8.UseMnemonic = false;
             // 
-            // textBox1
+            // txtUserNameRegister
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textBox1.Location = new System.Drawing.Point(111, 126);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 20);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtUserNameRegister.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUserNameRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserNameRegister.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.txtUserNameRegister.Location = new System.Drawing.Point(111, 126);
+            this.txtUserNameRegister.Name = "txtUserNameRegister";
+            this.txtUserNameRegister.Size = new System.Drawing.Size(306, 20);
+            this.txtUserNameRegister.TabIndex = 9;
+            this.txtUserNameRegister.Enter += new System.EventHandler(this.textUserName_Enter);
+            this.txtUserNameRegister.Leave += new System.EventHandler(this.textUserName_Leave);
             // 
             // label7
             // 
@@ -125,14 +125,14 @@
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.txtRePassword);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.linkLabel1);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnRegister);
             this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.txtPasswordRegister);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtUserNameRegister);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label6);
@@ -141,19 +141,29 @@
             this.panel2.Size = new System.Drawing.Size(468, 452);
             this.panel2.TabIndex = 3;
             // 
-            // textBox3
+            // pictureBox3
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox3.Location = new System.Drawing.Point(111, 260);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(306, 20);
-            this.textBox3.TabIndex = 17;
-            this.textBox3.TabStop = false;
-            this.textBox3.Text = "RePassword";
-            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
-            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
+            this.pictureBox3.Image = global::SimpleEnterpriseFramework.Properties.Resources.PinClipart_com_ship_clipart_black_and_1303682;
+            this.pictureBox3.Location = new System.Drawing.Point(45, 254);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 36);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 18;
+            this.pictureBox3.TabStop = false;
+            // 
+            // txtRePassword
+            // 
+            this.txtRePassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRePassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtRePassword.Location = new System.Drawing.Point(111, 260);
+            this.txtRePassword.Name = "txtRePassword";
+            this.txtRePassword.Size = new System.Drawing.Size(306, 20);
+            this.txtRePassword.TabIndex = 17;
+            this.txtRePassword.TabStop = false;
+            this.txtRePassword.Text = "RePassword";
+            this.txtRePassword.Enter += new System.EventHandler(this.textRePassword_Enter);
+            this.txtRePassword.Leave += new System.EventHandler(this.textRePassword_Leave);
             // 
             // label9
             // 
@@ -177,6 +187,26 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Do you have an account yet?";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::SimpleEnterpriseFramework.Properties.Resources.PinClipart_com_ship_clipart_black_and_1303682;
+            this.pictureBox2.Location = new System.Drawing.Point(45, 187);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(40, 36);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SimpleEnterpriseFramework.Properties.Resources.avatar_icon_images_20;
+            this.pictureBox1.Location = new System.Drawing.Point(45, 120);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // label6
             // 
@@ -258,36 +288,6 @@
             this.panel1.Size = new System.Drawing.Size(331, 452);
             this.panel1.TabIndex = 2;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::SimpleEnterpriseFramework.Properties.Resources.PinClipart_com_ship_clipart_black_and_1303682;
-            this.pictureBox3.Location = new System.Drawing.Point(45, 254);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 36);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 18;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::SimpleEnterpriseFramework.Properties.Resources.PinClipart_com_ship_clipart_black_and_1303682;
-            this.pictureBox2.Location = new System.Drawing.Point(45, 187);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 36);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 13;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SimpleEnterpriseFramework.Properties.Resources.avatar_icon_images_20;
-            this.pictureBox1.Location = new System.Drawing.Point(45, 120);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // pn_logo
             // 
             this.pn_logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pn_logo.BackgroundImage")));
@@ -310,22 +310,22 @@
             this.Text = "RegisterForm";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPasswordRegister;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUserNameRegister;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
@@ -339,7 +339,7 @@
         private System.Windows.Forms.Panel pn_logo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtRePassword;
         private System.Windows.Forms.Label label9;
     }
 }

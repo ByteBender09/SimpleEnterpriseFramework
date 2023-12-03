@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using SimpleEnterpriseFramework.DBSetting.Membership;
+using SimpleEnterpriseFramework.DBSetting;
+using SimpleEnterpriseFramework.DBSetting.MySQL;
+using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 
 namespace SimpleEnterpriseFramework
 {
@@ -17,59 +23,101 @@ namespace SimpleEnterpriseFramework
             InitializeComponent();
         }
 
-        private void textBox1_Enter(object sender, EventArgs e)
+        private void textUserName_Enter(object sender, EventArgs e)
         {
-            if (textBox1.Text == "Account" || textBox1.Text == "! Chưa có dữ liệu")
+            if (txtUsernameLogin.Text == "Account" || txtUsernameLogin.Text == "! Chưa có dữ liệu")
             {
-                textBox1.Text = "";
-                textBox1.ForeColor = System.Drawing.Color.Black;
+                txtUsernameLogin.Text = "";
+                txtUsernameLogin.ForeColor = System.Drawing.Color.Black;
             }
         }
 
-        private void textBox1_Leave(object sender, EventArgs e)
+        private void textUserName_Leave(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            if (txtUsernameLogin.Text == "")
             {
-                textBox1.Text = "Account";
-                textBox1.ForeColor = System.Drawing.SystemColors.ScrollBar;
+                txtUsernameLogin.Text = "Account";
+                txtUsernameLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
             }
         }
 
-        private void textBox2_Enter(object sender, EventArgs e)
+        private void textPassword_Enter(object sender, EventArgs e)
         {
-            if (textBox2.Text == "Password" || textBox2.Text == "! Chưa có dữ liệu")
+            if (txtPasswordLogin.Text == "Password" || txtPasswordLogin.Text == "! Chưa có dữ liệu")
             {
-                textBox2.Text = "";
-                textBox2.ForeColor = System.Drawing.Color.Black;
+                txtPasswordLogin.Text = "";
+                txtPasswordLogin.ForeColor = System.Drawing.Color.Black;
             }
         }
 
-        private void textBox2_Leave(object sender, EventArgs e)
+        private void textPassword_Leave(object sender, EventArgs e)
         {
-            if (textBox2.Text == "")
+            if (txtPasswordLogin.Text == "")
             {
-                textBox2.Text = "Password";
-                textBox2.ForeColor = System.Drawing.SystemColors.ScrollBar;
+                txtPasswordLogin.Text = "Password";
+                txtPasswordLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void login_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "Account")
+            if (txtUsernameLogin.Text == "Account")
             {
-                textBox1.Text = "! Chưa có dữ liệu";
-                textBox1.ForeColor = System.Drawing.Color.Red;
+                txtUsernameLogin.Text = "! Chưa có dữ liệu";
+                txtUsernameLogin.ForeColor = System.Drawing.Color.Red;
             }
-            if (textBox2.Text == "Password")
+            if (txtPasswordLogin.Text == "Password")
             {
-                textBox2.Text = "! Chưa có dữ liệu";
-                textBox2.ForeColor = System.Drawing.Color.Red;
+                txtPasswordLogin.Text = "! Chưa có dữ liệu";
+                txtPasswordLogin.ForeColor = System.Drawing.Color.Red;
             }
-            if (textBox1.Text != "Account" && textBox2.Text != "Password")
+            if (txtUsernameLogin.Text != "Account" && txtPasswordLogin.Text != "Password" && txtUsernameLogin.Text != "" && txtPasswordLogin.Text != "" && txtUsernameLogin.Text != "! Chưa có dữ liệu" && txtPasswordLogin.Text != "! Chưa có dữ liệu")
             {
-                this.Hide();
-                MainForm main = new MainForm();
-                main.ShowDialog();
+                // Kết nối với MySQL bằng tk và mk đã setup trên MySQL
+                using (var connectionHelper = new MySQL("Server=localhost;Database=account;User Id=root;Password=123456789;"))
+                {
+                    if (connectionHelper.OpenConnection())
+                    {
+                        string account = txtUsernameLogin.Text.Trim();
+                        string password = txtPasswordLogin.Text.Trim();
+
+                        try
+                        {
+                            // Bắt đầu lấy dữ liệu và thực hiện kiểm tra để đăng nhập
+                            using (var command = connectionHelper.GetConnection().CreateCommand())
+                            {
+                                string query = "SELECT Password FROM Users WHERE Username = @Username";
+                                command.CommandText = query;
+
+                                command.Parameters.AddWithValue("@Username", account);
+
+                                // Lấy mật khẩu băm từ cơ sở dữ liệu
+                                string hashedPasswordFromDB = command.ExecuteScalar()?.ToString();
+
+                                if (!string.IsNullOrEmpty(hashedPasswordFromDB) && HashPassword.hashPassword(password) == hashedPasswordFromDB)
+                                {
+                                    MessageBox.Show("Đăng nhập thành công");
+                                    this.Hide();
+                                    MainForm main = new MainForm();
+                                    main.ShowDialog();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Đăng nhập thất bại. Vui lòng kiểm tra lại tài khoản và mật khẩu.");
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
+                        }
+                        finally
+                        {
+                            // Đóng kết nối sau khi thực hiện xong
+                            connectionHelper.CloseConnection();
+                        }
+                    }
+                }
             }
         }
 
