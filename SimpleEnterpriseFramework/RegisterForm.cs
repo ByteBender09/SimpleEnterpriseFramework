@@ -8,8 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
+using SimpleEnterpriseFramework.DBSetting.MemberShip;
 using SimpleEnterpriseFramework.DBSetting.MySQL;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace SimpleEnterpriseFramework
@@ -108,66 +111,80 @@ namespace SimpleEnterpriseFramework
                 }
                 else
                 {
-                    using (var connectionHelper = new MySQL("Server=localhost;Database=account;User Id=root;Password=123456789;"))
+                    string username = txtUserNameRegister.Text.Trim();
+                    string password = HashPassword.hashPassword(txtPasswordRegister.Text.Trim());
+                    Membership p = new Membership(SingletonDatabase.getInstance().connString);
+                    if (p.Register(username, password))
                     {
-                        if (connectionHelper.OpenConnection())
-                        {
-                            string account = txtUserNameRegister.Text.Trim();
-                            string password = txtPasswordRegister.Text.Trim();
-
-
-                            try
-                            {
-                                using (var command = connectionHelper.GetConnection().CreateCommand())
-                                {
-                                    // Kiểm tra xem tên người dùng đã tồn tại chưa
-                                    string checkUserQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
-                                    command.CommandText = checkUserQuery;
-                                    command.Parameters.AddWithValue("@Username", account);
-
-                                    int existingUserCount = Convert.ToInt32(command.ExecuteScalar());
-
-                                    if (existingUserCount > 0)
-                                    {
-                                        MessageBox.Show("Tài khoản đã tồn tại. Vui lòng chọn một tên người dùng khác.");
-                                    }
-                                    else
-                                    {
-                                        // Thêm tài khoản mới vào cơ sở dữ liệu
-                                        string insertUserQuery = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
-                                        command.CommandText = insertUserQuery;
-                                        command.Parameters.Clear(); // Xóa các tham số cũ
-
-                                        // Băm mật khẩu trước khi lưu vào cơ sở dữ liệu
-                                        string hashedPassword = HashPassword.hashPassword(password);
-
-                                        command.Parameters.AddWithValue("@Username", account);
-                                        command.Parameters.AddWithValue("@Password", hashedPassword);
-
-                                        int rowsAffected = command.ExecuteNonQuery();
-
-                                        if (rowsAffected > 0)
-                                        {
-                                            MessageBox.Show("Đăng ký thành công");
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Đăng ký thất bại");
-                                        }
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
-                            }
-                            finally
-                            {
-                                // Đóng kết nối sau khi thực hiện xong
-                                connectionHelper.CloseConnection();
-                            }
-                        }
+                        MessageBox.Show("Register success");
+                        this.Hide();
+                        LoginForm login = new LoginForm();
+                        login.ShowDialog();
                     }
+                    else
+                    {
+                        MessageBox.Show("Register failed");
+                    }
+                    //using (var connectionHelper = new MySQL("Server=localhost;Database=account;User Id=root;Password=123456789;"))
+                    //{
+                    //    if (connectionHelper.OpenConnection())
+                    //    {
+                    //        string account = txtUserNameRegister.Text.Trim();
+                    //        string password = txtPasswordRegister.Text.Trim();
+
+
+                    //        try
+                    //        {
+                    //            using (var command = connectionHelper.GetConnection().CreateCommand())
+                    //            {
+                    //                // Kiểm tra xem tên người dùng đã tồn tại chưa
+                    //                string checkUserQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                    //                command.CommandText = checkUserQuery;
+                    //                command.Parameters.AddWithValue("@Username", account);
+
+                    //                int existingUserCount = Convert.ToInt32(command.ExecuteScalar());
+
+                    //                if (existingUserCount > 0)
+                    //                {
+                    //                    MessageBox.Show("Tài khoản đã tồn tại. Vui lòng chọn một tên người dùng khác.");
+                    //                }
+                    //                else
+                    //                {
+                    //                    // Thêm tài khoản mới vào cơ sở dữ liệu
+                    //                    string insertUserQuery = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
+                    //                    command.CommandText = insertUserQuery;
+                    //                    command.Parameters.Clear(); // Xóa các tham số cũ
+
+                    //                    // Băm mật khẩu trước khi lưu vào cơ sở dữ liệu
+                    //                    string hashedPassword = HashPassword.hashPassword(password);
+
+                    //                    command.Parameters.AddWithValue("@Username", account);
+                    //                    command.Parameters.AddWithValue("@Password", hashedPassword);
+
+                    //                    int rowsAffected = command.ExecuteNonQuery();
+
+                    //                    if (rowsAffected > 0)
+                    //                    {
+                    //                        MessageBox.Show("Đăng ký thành công");
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        MessageBox.Show("Đăng ký thất bại");
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
+                    //        }
+                    //        finally
+                    //        {
+                    //            // Đóng kết nối sau khi thực hiện xong
+                    //            connectionHelper.CloseConnection();
+                    //        }
+                    //    }
+                    //}
                 }
             }
         }

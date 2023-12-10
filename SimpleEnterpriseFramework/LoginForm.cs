@@ -13,6 +13,7 @@ using SimpleEnterpriseFramework.DBSetting.Membership;
 using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.MySQL;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
+using SimpleEnterpriseFramework.DBSetting.MemberShip;
 
 namespace SimpleEnterpriseFramework
 {
@@ -73,50 +74,19 @@ namespace SimpleEnterpriseFramework
             }
             if (txtUsernameLogin.Text != "Account" && txtPasswordLogin.Text != "Password" && txtUsernameLogin.Text != "" && txtPasswordLogin.Text != "" && txtUsernameLogin.Text != "! Chưa có dữ liệu" && txtPasswordLogin.Text != "! Chưa có dữ liệu")
             {
-                // Kết nối với MySQL bằng tk và mk đã setup trên MySQL
-                using (var connectionHelper = new MySQL("Server=localhost;Database=account;User Id=root;Password=123456789;"))
+                string username = txtUsernameLogin.Text.Trim();
+                string password = HashPassword.hashPassword(txtPasswordLogin.Text.Trim());
+                Membership p = new Membership(SingletonDatabase.getInstance().connString);
+                if (p.Login(username, password))
                 {
-                    if (connectionHelper.OpenConnection())
-                    {
-                        string account = txtUsernameLogin.Text.Trim();
-                        string password = txtPasswordLogin.Text.Trim();
-
-                        try
-                        {
-                            // Bắt đầu lấy dữ liệu và thực hiện kiểm tra để đăng nhập
-                            using (var command = connectionHelper.GetConnection().CreateCommand())
-                            {
-                                string query = "SELECT Password FROM Users WHERE Username = @Username";
-                                command.CommandText = query;
-
-                                command.Parameters.AddWithValue("@Username", account);
-
-                                // Lấy mật khẩu băm từ cơ sở dữ liệu
-                                string hashedPasswordFromDB = command.ExecuteScalar()?.ToString();
-
-                                if (!string.IsNullOrEmpty(hashedPasswordFromDB) && HashPassword.hashPassword(password) == hashedPasswordFromDB)
-                                {
-                                    MessageBox.Show("Đăng nhập thành công");
-                                    this.Hide();
-                                    MainForm main = new MainForm();
-                                    main.ShowDialog();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Đăng nhập thất bại. Vui lòng kiểm tra lại tài khoản và mật khẩu.");
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
-                        }
-                        finally
-                        {
-                            // Đóng kết nối sau khi thực hiện xong
-                            connectionHelper.CloseConnection();
-                        }
-                    }
+                    MessageBox.Show("Login success");
+                    this.Hide();
+                    MainForm main = new MainForm();
+                    main.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Login failed");
                 }
             }
         }

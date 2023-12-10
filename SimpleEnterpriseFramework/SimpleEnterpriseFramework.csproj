@@ -102,8 +102,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBSetting\Database.cs" />
+    <Compile Include="DBSetting\DB\DatabaseDAO.cs" />
+    <Compile Include="DBSetting\DB\DatabaseProcessor.cs" />
+    <Compile Include="DBSetting\DB\SqlServerDAO.cs" />
+    <Compile Include="DBSetting\DB\SqlServerProcessor.cs" />
     <Compile Include="DBSetting\Membership\HashPassword.cs" />
+    <Compile Include="DBSetting\Membership\Membership.cs" />
     <Compile Include="DBSetting\MySQL\MySQL.cs" />
+    <Compile Include="DBSetting\SingletonDatabase.cs" />
     <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>

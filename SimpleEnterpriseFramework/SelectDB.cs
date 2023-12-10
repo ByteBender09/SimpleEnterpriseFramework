@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleEnterpriseFramework.DBSetting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,8 @@ namespace SimpleEnterpriseFramework
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SingletonDatabase singletonDatabase = SingletonDatabase.getInstance();
+            singletonDatabase.connString = $@"Data Source=.;Initial Catalog={comboBox1.SelectedItem};Integrated Security=SSPI";
             this.Hide();
             LoginForm login = new LoginForm();
             login.ShowDialog();

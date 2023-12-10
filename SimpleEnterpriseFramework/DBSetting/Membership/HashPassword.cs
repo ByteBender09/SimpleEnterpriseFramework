@@ -21,7 +21,7 @@ namespace SimpleEnterpriseFramework.DBSetting.Membership.HashPassword
                 byte[] hashedBytes = sha256.ComputeHash(passwordBytes);
 
                 // Chọn một số lượng ký tự từ đầu của chuỗi hash
-                int desiredLength = 32;
+                int desiredLength = 30;
                 string truncatedHash = BitConverter.ToString(hashedBytes, 0, desiredLength / 2).Replace("-", "");
 
                 return truncatedHash;
