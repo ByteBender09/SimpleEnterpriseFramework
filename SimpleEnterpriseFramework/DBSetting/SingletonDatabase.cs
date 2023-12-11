@@ -28,7 +28,7 @@ namespace SimpleEnterpriseFramework.DBSetting
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("select name from sys.tables", connection))
+                using (SqlCommand command = new SqlCommand("SELECT name FROM sys.tables WHERE name != 'sysdiagrams'", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -41,5 +41,6 @@ namespace SimpleEnterpriseFramework.DBSetting
             }
             return listTables;
         }
+
     }
 }

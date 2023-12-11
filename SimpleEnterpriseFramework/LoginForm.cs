@@ -81,7 +81,10 @@ namespace SimpleEnterpriseFramework
                 {
                     MessageBox.Show("Login success");
                     this.Hide();
-                    MainForm main = new MainForm();
+
+                    // Get list tables name in database
+                    List<string> tables = SingletonDatabase.getInstance().GetAllTablesName();
+                    MainForm main = new MainForm(tables);
                     main.ShowDialog();
                 }
                 else

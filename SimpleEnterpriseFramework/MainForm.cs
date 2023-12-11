@@ -12,9 +12,10 @@ namespace SimpleEnterpriseFramework
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        public MainForm(List<string> tables)
         {
             InitializeComponent();
+            InitDataGridView(tables);
         }
 
         private void btnDelete_MouseEnter(object sender, EventArgs e)
@@ -32,6 +33,30 @@ namespace SimpleEnterpriseFramework
             this.Hide();
             LoginForm login = new LoginForm();
             login.ShowDialog();
+        }
+
+        private void DbCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dbCombobox.SelectedItem != null)
+            {
+                UpdateDataGridView(dbCombobox.SelectedItem.ToString());
+            }
+        }
+
+        private void UpdateDataGridView(string selectedTable)
+        {
+            dataGridView.DataSource = _sqlServerDao.GetAllData(selectedTable);
+        }
+
+        private void InitDataGridView(List<string> tables)
+        {
+            dbCombobox.DataSource = tables;
+            dbCombobox.SelectedIndexChanged += DbCombobox_SelectedIndexChanged;
+
+            if (dbCombobox.SelectedItem != null)
+            {
+                UpdateDataGridView(dbCombobox.SelectedItem.ToString());
+            }
         }
     }
 }
