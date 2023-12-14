@@ -49,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pn_logo = new System.Windows.Forms.Panel();
+            this.isShow = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -63,7 +64,7 @@
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.Color.White;
-            this.btnRegister.Location = new System.Drawing.Point(45, 342);
+            this.btnRegister.Location = new System.Drawing.Point(45, 363);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(372, 43);
             this.btnRegister.TabIndex = 14;
@@ -124,6 +125,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.isShow);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.txtRePassword);
             this.panel2.Controls.Add(this.label9);
@@ -180,12 +182,12 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(42, 314);
+            this.linkLabel1.Location = new System.Drawing.Point(42, 335);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(179, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(158, 16);
             this.linkLabel1.TabIndex = 15;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Do you have an account yet?";
+            this.linkLabel1.Text = "Do you have an account?";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // pictureBox2
@@ -298,6 +300,17 @@
             this.pn_logo.Size = new System.Drawing.Size(260, 52);
             this.pn_logo.TabIndex = 1;
             // 
+            // isShow
+            // 
+            this.isShow.AutoSize = true;
+            this.isShow.Location = new System.Drawing.Point(111, 303);
+            this.isShow.Name = "isShow";
+            this.isShow.Size = new System.Drawing.Size(124, 20);
+            this.isShow.TabIndex = 19;
+            this.isShow.Text = "Show password";
+            this.isShow.UseVisualStyleBackColor = true;
+            this.isShow.CheckedChanged += new System.EventHandler(this.isShow_CheckedChanged);
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -341,5 +354,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox txtRePassword;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox isShow;
     }
 }
