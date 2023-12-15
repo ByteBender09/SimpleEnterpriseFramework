@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SimpleEnterpriseFramework.DBSetting.DB
 {
@@ -123,71 +124,67 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
         public override bool Insert(Dictionary<string, object> data, string tableName)
         {
-            string sql = "insert into " + tableName + " values(";
-            for (int i = 0; i < data.Count; i++)
-            {
-                if (i < data.Count - 1)
-                {
-                    if (data.ElementAt(i).Value.GetType() == typeof(string))
-                        sql += ("'" + data.ElementAt(i).Value + "', ");
-                    else sql += (data.ElementAt(i).Value + ", ");
-                }
-                else
-                {
-                    if (data.ElementAt(i).Value.GetType() == typeof(string))
-                        sql += ("'" + data.ElementAt(i).Value + "')");
-                    else sql += (data.ElementAt(i).Value + ")");
-                }
-            }
+            string columns = string.Join(", ", data.Keys);
+            string parameters = string.Join(", ", data.Keys.Select(k => "@" + k));
+
+            string sql = $"INSERT INTO {tableName} ({columns}) VALUES ({parameters})";
 
             try
             {
-                databaseProcessor.QueryData(sql);
-                Console.WriteLine("Success!");
+                int rowsAffected = databaseProcessor.QueryDataNoMatterEncodingType(sql, data);
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Thêm thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Thêm thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Failed");
+                MessageBox.Show("Thêm thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw ex;
             }
-            return true;
         }
 
         public override bool Update(Dictionary<string, object> data, string tableName)
         {
             string primaryKey = GetPrimaryKey(tableName);
-            string sql = "update " + tableName + " set ";
-            for (int i = 0; i < data.Count; i++)
+            string columnsToUpdate = string.Join(", ", data.Where(kv => kv.Key != primaryKey).Select(kv =>
             {
-                if (data.ElementAt(i).Key != primaryKey)
-                {
-                    if (i < data.Count - 1)
-                    {
-                        if (data.ElementAt(i).Value.GetType() == typeof(string))
-                            sql += (data.ElementAt(i).Key + " = '" + data.ElementAt(i).Value + "', ");
-                        else sql += (data.ElementAt(i).Key + " = " + data.ElementAt(i).Value + ", ");
-                    }
-                    else
-                    {
-                        if (data.ElementAt(i).Value.GetType() == typeof(string))
-                            sql += (data.ElementAt(i).Key + " = '" + data.ElementAt(i).Value + "'");
-                        else sql += (data.ElementAt(i).Key + " = " + data.ElementAt(i).Value);
-                    }
-                }
-            }
-            if (data[primaryKey].GetType() == typeof(string))
-                sql += " where " + primaryKey + " = '" + data[primaryKey] + "'";
-            else sql += " where " + primaryKey + " = " + data[primaryKey];
+                if (kv.Value.GetType() == typeof(string))
+                    return $"{kv.Key} = @{kv.Key}";
+                return $"{kv.Key} = {kv.Value}";
+            }));
+
+            string sql = $"UPDATE {tableName} SET {columnsToUpdate} WHERE {primaryKey} = @{primaryKey}";
+
             try
             {
-                databaseProcessor.QueryData(sql);
+                data.TryGetValue(primaryKey, out object primaryKeyValue);
+
+                int rowsAffected = databaseProcessor.QueryDataNoMatterEncodingType(sql, data);
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Cập nhật thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Cập nhật thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw ex;
             }
-            return true;
         }
+
 
         public override bool Delete(string tableName, object valueOfPrimaryKey)
         {
@@ -209,34 +206,40 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
         public override bool Delete(string tableName, Dictionary<string, object> data)
         {
-            string sql = "delete from " + tableName + " where ";
-            for (int i = 0; i < data.Count; i++)
+            string primaryKey = data.Keys.FirstOrDefault();
+
+            if (primaryKey == null)
             {
-                if (i < data.Count - 1)
+                MessageBox.Show("Không có điều kiện để xóa");
+                return false;
+            }
+
+            string sql = $"DELETE FROM {tableName} WHERE {primaryKey} = @{primaryKey}";
+
+            try
+            {
+                object primaryKeyValue;
+                data.TryGetValue(primaryKey, out primaryKeyValue);
+
+                int rowsAffected = databaseProcessor.QueryDataNoMatterEncodingType(sql, new Dictionary<string, object> { { primaryKey, primaryKeyValue } });
+
+                if (rowsAffected > 0)
                 {
-                    if (data.Values.ElementAt(i).GetType() == typeof(string) || data.Values.ElementAt(i).GetType() == typeof(DateTime))
-                        sql += data.Keys.ElementAt(i).ToString() + " = '" + data.Values.ElementAt(i) + "' and ";
-                    else
-                        sql += data.Keys.ElementAt(i).ToString() + " = " + data.Values.ElementAt(i) + " and ";
+                    MessageBox.Show("Xóa thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
                 }
                 else
                 {
-                    if (data.Values.ElementAt(i).GetType() == typeof(string))
-                        sql += data.Keys.ElementAt(i).ToString() + " = '" + data.Values.ElementAt(i) + "'";
-                    else
-                        sql += data.Keys.ElementAt(i).ToString() + " = " + data.Values.ElementAt(i);
+                    MessageBox.Show("Không có dữ liệu để xóa hoặc xóa thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
-            }
-            Debug.WriteLine(sql);
-            try
-            {
-                databaseProcessor.QueryData(sql);
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show("Xóa thất bại: " + ex.Message, "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            return true;
         }
+
     }
 }

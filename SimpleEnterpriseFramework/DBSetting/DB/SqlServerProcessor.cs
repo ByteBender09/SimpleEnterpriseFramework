@@ -74,5 +74,32 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             }
             return i;
         }
+
+        public override int QueryDataNoMatterEncodingType(string sqlCommand, Dictionary<string, object> parameters)
+        {
+            SqlCommand sqlCommand1 = new SqlCommand(sqlCommand, connection);
+
+            foreach (var entry in parameters)
+            {
+                sqlCommand1.Parameters.AddWithValue("@" + entry.Key, entry.Value ?? DBNull.Value);
+            }
+
+            connection.Open();
+            int rowsAffected = 0;
+            try
+            {
+                rowsAffected = sqlCommand1.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return rowsAffected;
+        }
+
     }
 }

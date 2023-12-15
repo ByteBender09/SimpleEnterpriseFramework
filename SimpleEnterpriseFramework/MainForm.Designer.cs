@@ -155,6 +155,7 @@ namespace SimpleEnterpriseFramework
             this.btnDeleteRow.UseVisualStyleBackColor = true;
             this.btnDeleteRow.MouseEnter += new System.EventHandler(this.btnDelete_MouseEnter);
             this.btnDeleteRow.MouseLeave += new System.EventHandler(this.btnDelete_MouseLeave);
+            this.btnDeleteRow.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEditRow
             // 
@@ -173,6 +174,7 @@ namespace SimpleEnterpriseFramework
             this.btnEditRow.TabIndex = 2;
             this.btnEditRow.Text = "Edit Row";
             this.btnEditRow.UseVisualStyleBackColor = true;
+            this.btnEditRow.Click += new System.EventHandler(this.btnEditRow_Click);
             // 
             // btnAddRow
             // 
@@ -191,6 +193,7 @@ namespace SimpleEnterpriseFramework
             this.btnAddRow.TabIndex = 1;
             this.btnAddRow.Text = "New Row";
             this.btnAddRow.UseVisualStyleBackColor = true;
+            this.btnAddRow.Click += new System.EventHandler(this.btnAddRow_Click);
             // 
             // lb_service
             // 

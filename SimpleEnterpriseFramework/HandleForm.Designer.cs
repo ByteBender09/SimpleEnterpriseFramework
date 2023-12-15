@@ -39,12 +39,11 @@ namespace SimpleEnterpriseFramework
             this.panelBtn.SuspendLayout();
             this.buttonLayoutPanel.SuspendLayout();
             this.SuspendLayout();
-
             // 
             // panelBody
             // 
-            this.panelBody.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right) | (System.Windows.Forms.AnchorStyles.Top)));
+            this.panelBody.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelBody.Location = new System.Drawing.Point(0, 50);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(200, 100);
@@ -54,7 +53,7 @@ namespace SimpleEnterpriseFramework
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnCancel.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(96, 4);
+            this.btnCancel.Location = new System.Drawing.Point(116, 4);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(92, 32);
@@ -67,22 +66,23 @@ namespace SimpleEnterpriseFramework
             // 
             this.btnConfirm.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnConfirm.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.Location = new System.Drawing.Point(216, 4);
+            this.btnConfirm.Location = new System.Drawing.Point(236, 4);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(100, 32);
             this.btnConfirm.TabIndex = 4;
             this.btnConfirm.Text = "Update";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // panelBtn
             // 
             this.panelBtn.Controls.Add(this.buttonLayoutPanel);
             this.panelBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBtn.Location = new System.Drawing.Point(30, 170);
+            this.panelBtn.Location = new System.Drawing.Point(5, 410);
             this.panelBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.panelBtn.Name = "panel2";
-            this.panelBtn.Size = new System.Drawing.Size(404, 40);
+            this.panelBtn.Name = "panelBtn";
+            this.panelBtn.Size = new System.Drawing.Size(445, 40);
             this.panelBtn.TabIndex = 5;
             // 
             // buttonLayoutPanel
@@ -97,7 +97,7 @@ namespace SimpleEnterpriseFramework
             this.buttonLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.buttonLayoutPanel.Name = "buttonLayoutPanel";
             this.buttonLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.buttonLayoutPanel.Size = new System.Drawing.Size(404, 40);
+            this.buttonLayoutPanel.Size = new System.Drawing.Size(445, 40);
             this.buttonLayoutPanel.TabIndex = 0;
             // 
             // HandleForm
@@ -108,11 +108,10 @@ namespace SimpleEnterpriseFramework
             this.Controls.Add(this.panelBtn);
             this.Name = "HandleForm";
             this.Padding = new System.Windows.Forms.Padding(5, 30, 30, 0);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panelBtn.ResumeLayout(false);
             this.buttonLayoutPanel.ResumeLayout(false);
-            this.StartPosition = FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

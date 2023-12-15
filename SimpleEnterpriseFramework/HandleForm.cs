@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimpleEnterpriseFramework.DBSetting;
+using SimpleEnterpriseFramework.DBSetting.DB;
 using SimpleEnterpriseFramework.Factories;
 
 namespace SimpleEnterpriseFramework
@@ -20,13 +22,29 @@ namespace SimpleEnterpriseFramework
             Update = 1,
         }
 
+        private MainForm mainFormRef;
+        SaveType _sType;
         List<FormTextField> _fields = new List<FormTextField>();
+        SqlServerDAO sqlServerDAO = new SqlServerDAO(SingletonDatabase.getInstance().connString);
+        string _tableName = "";
 
-        public HandleForm(SaveType type, DataGridViewRow row)
+        public HandleForm(MainForm mainForm, SaveType type, DataGridViewRow row, string tableName)
         {
             InitializeComponent();
+            this.mainFormRef = mainForm;
+            this._tableName = tableName;
+            this._sType = type;
 
-            if (type == SaveType.Insert) this.Text = "INSERT"; else this.Text = "UPDATE";
+            if (type == SaveType.Insert)
+            {
+                this.Text = "INSERT";
+                this.btnConfirm.Text = "Insert";
+            }
+             else
+            {
+                this.Text = "UPDATE";
+                this.btnConfirm.Text = "Update";
+            }
 
             foreach (DataGridViewColumn col in row.DataGridView.Columns)
             {
@@ -58,6 +76,21 @@ namespace SimpleEnterpriseFramework
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> insertDict = this.GetFormDataAsDict();
+            if (this._sType == SaveType.Insert)
+            {
+                sqlServerDAO.Insert(insertDict, this._tableName);
+            }
+            else if (this._sType == SaveType.Update)
+            {
+                sqlServerDAO.Update(insertDict, this._tableName);
+            }
+            this.mainFormRef.ReloadData();
+            this.Dispose();
         }
     }
 }
