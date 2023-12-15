@@ -46,6 +46,7 @@ namespace SimpleEnterpriseFramework
         {
             if (txtPasswordRegister.Text == "Password" || txtPasswordRegister.Text == "! Chưa có dữ liệu")
             {
+                txtPasswordRegister.UseSystemPasswordChar = true;
                 txtPasswordRegister.Text = "";
                 txtPasswordRegister.ForeColor = System.Drawing.Color.Black;
             }
@@ -55,6 +56,7 @@ namespace SimpleEnterpriseFramework
         {
             if (txtPasswordRegister.Text == "")
             {
+                txtPasswordRegister.UseSystemPasswordChar = false;
                 txtPasswordRegister.Text = "Password";
                 txtPasswordRegister.ForeColor = System.Drawing.SystemColors.ScrollBar;
             }
@@ -64,6 +66,7 @@ namespace SimpleEnterpriseFramework
         {
             if (txtRePassword.Text == "RePassword" || txtRePassword.Text == "! Chưa có dữ liệu" || txtRePassword.Text == "! RePassword incorrect")
             {
+                txtRePassword.UseSystemPasswordChar = true;
                 txtRePassword.Text = "";
                 txtRePassword.ForeColor = System.Drawing.Color.Black;
             }
@@ -73,6 +76,7 @@ namespace SimpleEnterpriseFramework
         {
             if (txtRePassword.Text == "")
             {
+                txtRePassword.UseSystemPasswordChar = false;
                 txtRePassword.Text = "RePassword";
                 txtRePassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
             }
@@ -106,87 +110,42 @@ namespace SimpleEnterpriseFramework
             {
                 if (txtPasswordRegister.Text != txtRePassword.Text && txtRePassword.Text != "! RePassword incorrect" && txtRePassword.Text != "! Chưa có dữ liệu")
                 {
+                    txtRePassword.UseSystemPasswordChar = false;
                     txtRePassword.Text = "! RePassword incorrect";
                     txtRePassword.ForeColor = System.Drawing.Color.Red;
                 }
-                else
+                else if (txtPasswordRegister.Text == txtRePassword.Text && txtRePassword.Text != "! RePassword incorrect" && txtRePassword.Text != "! Chưa có dữ liệu")
                 {
                     string username = txtUserNameRegister.Text.Trim();
                     string password = HashPassword.hashPassword(txtPasswordRegister.Text.Trim());
                     Membership p = new Membership(SingletonDatabase.getInstance().connString);
                     if (p.Register(username, password))
                     {
-                        MessageBox.Show("Register success");
-                        Hide();
+                        MessageBox.Show("Đăng ký thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        this.Hide();
                         LoginForm login = new LoginForm();
                         login.ShowDialog();
                     }
                     else
                     {
-                        MessageBox.Show("Register failed");
+                        MessageBox.Show("Đăng ký thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    //using (var connectionHelper = new MySQL("Server=localhost;Database=account;User Id=root;Password=123456789;"))
-                    //{
-                    //    if (connectionHelper.OpenConnection())
-                    //    {
-                    //        string account = txtUserNameRegister.Text.Trim();
-                    //        string password = txtPasswordRegister.Text.Trim();
-
-
-                    //        try
-                    //        {
-                    //            using (var command = connectionHelper.GetConnection().CreateCommand())
-                    //            {
-                    //                // Kiểm tra xem tên người dùng đã tồn tại chưa
-                    //                string checkUserQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
-                    //                command.CommandText = checkUserQuery;
-                    //                command.Parameters.AddWithValue("@Username", account);
-
-                    //                int existingUserCount = Convert.ToInt32(command.ExecuteScalar());
-
-                    //                if (existingUserCount > 0)
-                    //                {
-                    //                    MessageBox.Show("Tài khoản đã tồn tại. Vui lòng chọn một tên người dùng khác.");
-                    //                }
-                    //                else
-                    //                {
-                    //                    // Thêm tài khoản mới vào cơ sở dữ liệu
-                    //                    string insertUserQuery = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
-                    //                    command.CommandText = insertUserQuery;
-                    //                    command.Parameters.Clear(); // Xóa các tham số cũ
-
-                    //                    // Băm mật khẩu trước khi lưu vào cơ sở dữ liệu
-                    //                    string hashedPassword = HashPassword.hashPassword(password);
-
-                    //                    command.Parameters.AddWithValue("@Username", account);
-                    //                    command.Parameters.AddWithValue("@Password", hashedPassword);
-
-                    //                    int rowsAffected = command.ExecuteNonQuery();
-
-                    //                    if (rowsAffected > 0)
-                    //                    {
-                    //                        MessageBox.Show("Đăng ký thành công");
-                    //                    }
-                    //                    else
-                    //                    {
-                    //                        MessageBox.Show("Đăng ký thất bại");
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //        catch (Exception ex)
-                    //        {
-                    //            MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
-                    //        }
-                    //        finally
-                    //        {
-                    //            // Đóng kết nối sau khi thực hiện xong
-                    //            connectionHelper.CloseConnection();
-                    //        }
-                    //    }
-                    //}
                 }
             }
+        }
+
+        private void isShow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isShow.Checked)
+            {
+                txtPasswordRegister.UseSystemPasswordChar = false;
+                txtRePassword.UseSystemPasswordChar = false;
+
+                return;
+            }
+            txtPasswordRegister.UseSystemPasswordChar = true;
+            txtRePassword.UseSystemPasswordChar = true;
         }
     }
 }

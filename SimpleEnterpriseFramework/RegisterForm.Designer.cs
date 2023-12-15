@@ -29,47 +29,48 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
-            btnRegister = new System.Windows.Forms.Button();
-            txtPasswordRegister = new System.Windows.Forms.TextBox();
-            label8 = new System.Windows.Forms.Label();
-            txtUserNameRegister = new System.Windows.Forms.TextBox();
-            label7 = new System.Windows.Forms.Label();
-            panel2 = new System.Windows.Forms.Panel();
-            pictureBox3 = new System.Windows.Forms.PictureBox();
-            txtRePassword = new System.Windows.Forms.TextBox();
-            label9 = new System.Windows.Forms.Label();
-            linkLabel1 = new System.Windows.Forms.LinkLabel();
-            pictureBox2 = new System.Windows.Forms.PictureBox();
-            pictureBox1 = new System.Windows.Forms.PictureBox();
-            label6 = new System.Windows.Forms.Label();
-            label5 = new System.Windows.Forms.Label();
-            label4 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            panel1 = new System.Windows.Forms.Panel();
-            pn_logo = new System.Windows.Forms.Panel();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
-            panel1.SuspendLayout();
-            SuspendLayout();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.txtPasswordRegister = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtUserNameRegister = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.txtRePassword = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pn_logo = new System.Windows.Forms.Panel();
+            this.isShow = new System.Windows.Forms.CheckBox();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // btnRegister
             // 
-            btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
-            btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnRegister.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            btnRegister.ForeColor = System.Drawing.Color.White;
-            btnRegister.Location = new System.Drawing.Point(45, 342);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new System.Drawing.Size(372, 43);
-            btnRegister.TabIndex = 14;
-            btnRegister.Text = "REGISTER";
-            btnRegister.UseVisualStyleBackColor = false;
-            btnRegister.Click += new System.EventHandler(register_Click);
+            this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
+            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.ForeColor = System.Drawing.Color.White;
+            this.btnRegister.Location = new System.Drawing.Point(45, 363);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(372, 43);
+            this.btnRegister.TabIndex = 14;
+            this.btnRegister.Text = "REGISTER";
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.register_Click);
             // 
             // txtPasswordRegister
             // 
@@ -123,23 +124,24 @@
             // 
             // panel2
             // 
-            panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            panel2.Controls.Add(pictureBox3);
-            panel2.Controls.Add(txtRePassword);
-            panel2.Controls.Add(label9);
-            panel2.Controls.Add(linkLabel1);
-            panel2.Controls.Add(btnRegister);
-            panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(txtPasswordRegister);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(txtUserNameRegister);
-            panel2.Controls.Add(label7);
-            panel2.Controls.Add(pictureBox1);
-            panel2.Controls.Add(label6);
-            panel2.Location = new System.Drawing.Point(333, -1);
-            panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(468, 452);
-            panel2.TabIndex = 3;
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.isShow);
+            this.panel2.Controls.Add(this.pictureBox3);
+            this.panel2.Controls.Add(this.txtRePassword);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.linkLabel1);
+            this.panel2.Controls.Add(this.btnRegister);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.txtPasswordRegister);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.txtUserNameRegister);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Location = new System.Drawing.Point(333, -1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(468, 452);
+            this.panel2.TabIndex = 3;
             // 
             // pictureBox3
             // 
@@ -298,6 +300,17 @@
             pn_logo.Size = new System.Drawing.Size(260, 52);
             pn_logo.TabIndex = 1;
             // 
+            // isShow
+            // 
+            this.isShow.AutoSize = true;
+            this.isShow.Location = new System.Drawing.Point(111, 303);
+            this.isShow.Name = "isShow";
+            this.isShow.Size = new System.Drawing.Size(124, 20);
+            this.isShow.TabIndex = 19;
+            this.isShow.Text = "Show password";
+            this.isShow.UseVisualStyleBackColor = true;
+            this.isShow.CheckedChanged += new System.EventHandler(this.isShow_CheckedChanged);
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -341,5 +354,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox txtRePassword;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox isShow;
     }
 }

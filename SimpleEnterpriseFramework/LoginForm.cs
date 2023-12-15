@@ -46,6 +46,7 @@ namespace SimpleEnterpriseFramework
         {
             if (txtPasswordLogin.Text == "Password" || txtPasswordLogin.Text == "! Chưa có dữ liệu")
             {
+                txtPasswordLogin.UseSystemPasswordChar = true;
                 txtPasswordLogin.Text = "";
                 txtPasswordLogin.ForeColor = System.Drawing.Color.Black;
             }
@@ -55,6 +56,7 @@ namespace SimpleEnterpriseFramework
         {
             if (txtPasswordLogin.Text == "")
             {
+                txtPasswordLogin.UseSystemPasswordChar = false;
                 txtPasswordLogin.Text = "Password";
                 txtPasswordLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
             }
@@ -79,8 +81,8 @@ namespace SimpleEnterpriseFramework
                 Membership p = new Membership(SingletonDatabase.getInstance().connString);
                 if (p.Login(username, password))
                 {
-                    MessageBox.Show("Login success");
-                    Hide();
+                    MessageBox.Show("Đăng nhập thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Hide();
 
                     // Get list tables name in database
                     List<string> tables = SingletonDatabase.getInstance().GetAllTablesName();
@@ -89,7 +91,7 @@ namespace SimpleEnterpriseFramework
                 }
                 else
                 {
-                    MessageBox.Show("Login failed");
+                    MessageBox.Show("Đăng nhập thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -99,6 +101,22 @@ namespace SimpleEnterpriseFramework
             Hide();
             RegisterForm register = new RegisterForm();
             register.ShowDialog();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void isShow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isShow.Checked)
+            {
+                txtPasswordLogin.UseSystemPasswordChar = false;
+
+                return;
+            }
+            txtPasswordLogin.UseSystemPasswordChar = true;
         }
     }
 }
