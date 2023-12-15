@@ -80,7 +80,7 @@ namespace SimpleEnterpriseFramework
                 if (p.Login(username, password))
                 {
                     MessageBox.Show("Login success");
-                    this.Hide();
+                    Hide();
 
                     // Get list tables name in database
                     List<string> tables = SingletonDatabase.getInstance().GetAllTablesName();
@@ -96,7 +96,7 @@ namespace SimpleEnterpriseFramework
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
+            Hide();
             RegisterForm register = new RegisterForm();
             register.ShowDialog();
         }

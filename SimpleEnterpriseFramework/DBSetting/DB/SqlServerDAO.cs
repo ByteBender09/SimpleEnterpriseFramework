@@ -13,7 +13,7 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
         //constructor
         public SqlServerDAO(string connection)
         {
-            this.databaseProcessor = new SqlServerProcessor(connection);
+            databaseProcessor = new SqlServerProcessor(connection);
         }
 
         //override function
@@ -33,7 +33,9 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
                 {
                     databaseProcessor.QueryData(sql2);
                 }
-                catch (Exception e) { }
+                catch (Exception e) {
+                    Debug.Print(e.ToString());
+                }
             }
         }
 

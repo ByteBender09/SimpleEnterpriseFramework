@@ -80,7 +80,7 @@ namespace SimpleEnterpriseFramework
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
+            Hide();
             LoginForm login = new LoginForm();
             login.ShowDialog();
         }
@@ -117,7 +117,7 @@ namespace SimpleEnterpriseFramework
                     if (p.Register(username, password))
                     {
                         MessageBox.Show("Register success");
-                        this.Hide();
+                        Hide();
                         LoginForm login = new LoginForm();
                         login.ShowDialog();
                     }
