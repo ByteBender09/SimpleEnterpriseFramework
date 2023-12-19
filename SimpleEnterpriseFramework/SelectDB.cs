@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using SimpleEnterpriseFramework.DependencyInjection;
+using SimpleEnterpriseFramework.InterfaceForm;
 
 namespace SimpleEnterpriseFramework
 {
@@ -29,12 +30,12 @@ namespace SimpleEnterpriseFramework
             }
             else
             {
-                IoCContainer.Register<LoginForm, LoginForm>();
+                IoCContainer.Register<ILoginForm, LoginForm>();
                 SingletonDatabase singletonDatabase = SingletonDatabase.getInstance();
                 singletonDatabase.connString = $@"Data Source=.;Initial Catalog={comboBox1.SelectedItem};Integrated Security=SSPI";
                 this.Hide();
-                LoginForm login = IoCContainer.Resolve<LoginForm>();
-                login.ShowDialog();
+                ILoginForm login = IoCContainer.Resolve<ILoginForm>();
+                login.ShowForm();
             }
 
         }

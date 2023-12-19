@@ -14,14 +14,72 @@ using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.MySQL;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
+using SimpleEnterpriseFramework.InterfaceForm;
+using SimpleEnterpriseFramework.DependencyInjection;
 
 namespace SimpleEnterpriseFramework
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : Form, ILoginForm
     {
+        public event EventHandler LoginClicked;
+
         public LoginForm()
         {
             InitializeComponent();
+
+            // Gắn sự kiện cho nút đăng nhập
+            btnLogin.Click += (sender, e) => OnLoginClicked();
+        }
+
+        public void ShowForm()
+        {
+            this.ShowDialog();
+        }
+
+        public void HideForm()
+        {
+            this.Hide();
+        }
+
+        public void ShowError(string errorMessage)
+        {
+            MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public string GetUsername()
+        {
+            return txtUsernameLogin.Text;
+        }
+
+        public string GetPassword()
+        {
+            return txtPasswordLogin.Text;
+        }
+
+        public void ClearUsername()
+        {
+            txtUsernameLogin.Text = "";
+            txtUsernameLogin.ForeColor = System.Drawing.Color.Black;
+        }
+
+        public void ClearPassword()
+        {
+            txtPasswordLogin.UseSystemPasswordChar = false;
+            txtPasswordLogin.Text = "Password";
+            txtPasswordLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
+        }
+
+        public void SetTables(List<string> tables)
+        {
+            // Xử lý logic hiển thị danh sách bảng sau khi đăng nhập thành công
+            MainForm main = new MainForm(tables);
+            main.ShowDialog();
+        }
+
+        // Gọi sự kiện đăng nhập khi người dùng nhấn nút đăng nhập
+        private void OnLoginClicked()
+        {
+            LoginClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void textUserName_Enter(object sender, EventArgs e)
@@ -98,9 +156,10 @@ namespace SimpleEnterpriseFramework
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Hide();
-            RegisterForm register = new RegisterForm();
-            register.ShowDialog();
+            IoCContainer.Register<IRegisterForm, RegisterForm>();
+            this.Hide();
+            IRegisterForm register = IoCContainer.Resolve<IRegisterForm>();
+            register.ShowForm();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

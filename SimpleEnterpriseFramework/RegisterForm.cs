@@ -12,16 +12,30 @@ using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
 using SimpleEnterpriseFramework.DBSetting.MySQL;
+using SimpleEnterpriseFramework.DependencyInjection;
+using SimpleEnterpriseFramework.InterfaceForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace SimpleEnterpriseFramework
 {
-    public partial class RegisterForm : Form
+    public partial class RegisterForm : Form, IRegisterForm
     {
         public RegisterForm()
         {
             InitializeComponent();
+        }
+
+        public event EventHandler RegisterClicked;
+
+        public void ShowForm()
+        {
+            this.ShowDialog();
+        }
+
+        public void HideForm()
+        {
+            this.Hide();
         }
 
         private void textUserName_Enter(object sender, EventArgs e)
@@ -122,10 +136,9 @@ namespace SimpleEnterpriseFramework
                     if (p.Register(username, password))
                     {
                         MessageBox.Show("Đăng ký thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         this.Hide();
-                        LoginForm login = new LoginForm();
-                        login.ShowDialog();
+                        ILoginForm login = IoCContainer.Resolve<ILoginForm>();
+                        login.ShowForm();
                     }
                     else
                     {
