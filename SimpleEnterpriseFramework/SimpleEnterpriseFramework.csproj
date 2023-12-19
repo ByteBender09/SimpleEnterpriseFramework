@@ -101,6 +101,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\SEPButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DBSetting\Database.cs" />
     <Compile Include="DBSetting\DB\DatabaseDAO.cs" />
     <Compile Include="DBSetting\DB\DatabaseProcessor.cs" />
@@ -110,7 +113,7 @@
     <Compile Include="DBSetting\Membership\Membership.cs" />
     <Compile Include="DBSetting\MySQL\MySQL.cs" />
     <Compile Include="DBSetting\SingletonDatabase.cs" />
-	<Compile Include="DependencyInjection\IoCContainer.cs" />
+    <Compile Include="DependencyInjection\IoCContainer.cs" />
     <Compile Include="Factories\FactoryPanel.cs" />
     <Compile Include="FormTextField.cs" />
     <Compile Include="HandleForm.cs">
