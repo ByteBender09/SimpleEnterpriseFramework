@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectDB));
             panel1 = new System.Windows.Forms.Panel();
-            button1 = new System.Windows.Forms.Button();
             comboBox2 = new System.Windows.Forms.ComboBox();
             comboBox1 = new System.Windows.Forms.ComboBox();
             pn_logo = new System.Windows.Forms.Panel();
@@ -40,7 +39,6 @@
             // panel1
             // 
             panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(pn_logo);
@@ -49,21 +47,6 @@
             panel1.Name = "panel1";
             panel1.Size = new System.Drawing.Size(404, 283);
             panel1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            button1.BackColor = System.Drawing.Color.White;
-            button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            button1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
-            button1.Location = new System.Drawing.Point(130, 208);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(130, 43);
-            button1.TabIndex = 15;
-            button1.Text = "CONNECT";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += new System.EventHandler(button1_Click);
             // 
             // comboBox2
             // 
@@ -105,13 +88,10 @@
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(404, 283);
-            Controls.Add(panel1);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "SelectDB";
             Text = "SelectDB";
-            panel1.ResumeLayout(false);
-            ResumeLayout(false);
 
         }
 
@@ -121,6 +101,5 @@
         private System.Windows.Forms.Panel pn_logo;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button1;
     }
 }
