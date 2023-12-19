@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SimpleEnterpriseFramework.DependencyInjection;
+using SimpleEnterpriseFramework.InterfaceForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,9 +48,10 @@ namespace SimpleEnterpriseFramework
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            IoCContainer.Register<ILoginForm, LoginForm>();
             Hide();
-            LoginForm login = new LoginForm();
-            login.ShowDialog();
+            ILoginForm login = IoCContainer.Resolve<ILoginForm>();
+            login.ShowForm();
         }
 
         private void btnAddRow_Click(object sender, EventArgs e)
