@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimpleEnterpriseFramework.Components;
 using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
@@ -24,6 +25,17 @@ namespace SimpleEnterpriseFramework
         public RegisterForm()
         {
             InitializeComponent();
+
+            SEPButton btnConnect = new SEPButton("btnRegister", "REGISTER", Color.FromArgb(31, 38, 62), Color.White, new Point(45, 363), new Size(372, 43),
+                (sender, agrs) =>
+                {
+                    register_Click(sender, agrs);
+                }
+                );
+            panel2.Controls.Add(btnConnect);
+            Controls.Add(panel2);
+            panel2.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         public event EventHandler RegisterClicked;

@@ -59,18 +59,18 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
-            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegister.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.ForeColor = System.Drawing.Color.White;
-            this.btnRegister.Location = new System.Drawing.Point(45, 363);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(372, 43);
-            this.btnRegister.TabIndex = 14;
-            this.btnRegister.Text = "REGISTER";
-            this.btnRegister.UseVisualStyleBackColor = false;
-            this.btnRegister.Click += new System.EventHandler(this.register_Click);
+            //this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
+            //this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
+            //this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            //this.btnRegister.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //this.btnRegister.ForeColor = System.Drawing.Color.White;
+            //this.btnRegister.Location = new System.Drawing.Point(45, 363);
+            //this.btnRegister.Name = "btnRegister";
+            //this.btnRegister.Size = new System.Drawing.Size(372, 43);
+            //this.btnRegister.TabIndex = 14;
+            //this.btnRegister.Text = "REGISTER";
+            //this.btnRegister.UseVisualStyleBackColor = false;
+            //this.btnRegister.Click += new System.EventHandler(this.register_Click);
             // 
             // txtPasswordRegister
             // 
@@ -130,7 +130,7 @@
             this.panel2.Controls.Add(this.txtRePassword);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.linkLabel1);
-            this.panel2.Controls.Add(this.btnRegister);
+            //this.panel2.Controls.Add(this.btnRegister);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.txtPasswordRegister);
             this.panel2.Controls.Add(this.label8);
@@ -316,19 +316,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel2);
+            //this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            //this.panel2.ResumeLayout(false);
+            //this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.ResumeLayout(false);
+            //this.ResumeLayout(false);
 
         }
 

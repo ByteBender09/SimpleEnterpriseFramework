@@ -33,7 +33,6 @@ namespace SimpleEnterpriseFramework
         {
             this.panelBody = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnConfirm = new System.Windows.Forms.Button();
             this.panelBtn = new System.Windows.Forms.Panel();
             this.buttonLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panelBtn.SuspendLayout();
@@ -61,19 +60,19 @@ namespace SimpleEnterpriseFramework
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnConfirm.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.Location = new System.Drawing.Point(236, 4);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(100, 32);
-            this.btnConfirm.TabIndex = 4;
-            this.btnConfirm.Text = "Update";
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            //// 
+            //// btnConfirm
+            //// 
+            //this.btnConfirm.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            //this.btnConfirm.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //this.btnConfirm.Location = new System.Drawing.Point(236, 4);
+            //this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
+            //this.btnConfirm.Name = "btnConfirm";
+            //this.btnConfirm.Size = new System.Drawing.Size(100, 32);
+            //this.btnConfirm.TabIndex = 4;
+            //this.btnConfirm.Text = "Update";
+            //this.btnConfirm.UseVisualStyleBackColor = true;
+            //this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // panelBtn
             // 
@@ -92,7 +91,6 @@ namespace SimpleEnterpriseFramework
             this.buttonLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.buttonLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.buttonLayoutPanel.Controls.Add(this.btnCancel, 0, 0);
-            this.buttonLayoutPanel.Controls.Add(this.btnConfirm, 2, 0);
             this.buttonLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.buttonLayoutPanel.Name = "buttonLayoutPanel";
@@ -109,17 +107,12 @@ namespace SimpleEnterpriseFramework
             this.Name = "HandleForm";
             this.Padding = new System.Windows.Forms.Padding(5, 30, 30, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.panelBtn.ResumeLayout(false);
-            this.buttonLayoutPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
-
         }
 
         #endregion
 
         private System.Windows.Forms.Panel panelBody;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Panel panelBtn;
         private TableLayoutPanel buttonLayoutPanel;
     }

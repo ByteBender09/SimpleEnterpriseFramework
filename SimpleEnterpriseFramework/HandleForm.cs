@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimpleEnterpriseFramework.Components;
 using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.DB;
 using SimpleEnterpriseFramework.Factories;
@@ -35,15 +36,36 @@ namespace SimpleEnterpriseFramework
             this._tableName = tableName;
             this._sType = type;
 
+            //SEPButton btnCancel = new SEPButton("btnCancel", "Cancel", Color.FromArgb(255, 255, 255), Color.Black, new Point(116, 4), new Size(92, 32),
+            //    (sender, agrs) =>
+            //    {
+            //        btnCancel_Click(sender, agrs);
+            //    }
+            //    );
+            SEPButton btnConfirm = new SEPButton("btnConfirm", "", Color.FromArgb(255, 255, 255), Color.Black, new Point(236, 4), new Size(100, 32),
+                (sender, agrs) =>
+                {
+                    btnConfirm_Click(sender, agrs);
+                }
+                );
+            buttonLayoutPanel.Controls.Add(btnConfirm, 2, 0);
+            panelBtn.Controls.Add(buttonLayoutPanel);
+            Controls.Add(panelBtn);
+            panelBtn.ResumeLayout(false);
+            buttonLayoutPanel.ResumeLayout(false);
+            ResumeLayout(false);
+
+            
+
             if (type == SaveType.Insert)
             {
-                this.Text = "INSERT";
-                this.btnConfirm.Text = "Insert";
+                Text = "INSERT";
+                btnConfirm.Text = "Insert";
             }
              else
             {
-                this.Text = "UPDATE";
-                this.btnConfirm.Text = "Update";
+                Text = "UPDATE";
+                btnConfirm.Text = "Update";
             }
 
             foreach (DataGridViewColumn col in row.DataGridView.Columns)
@@ -60,6 +82,8 @@ namespace SimpleEnterpriseFramework
 
 
             Controls.Add(panelBody);
+
+
         }
 
         public Dictionary<string, object> GetFormDataAsDict()
