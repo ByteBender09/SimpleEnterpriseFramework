@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using SimpleEnterpriseFramework.DBSetting.Membership;
 using SimpleEnterpriseFramework.DBSetting;
-using SimpleEnterpriseFramework.DBSetting.MySQL;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
 using SimpleEnterpriseFramework.InterfaceForm;
@@ -29,7 +20,6 @@ namespace SimpleEnterpriseFramework
             InitializeComponent();
 
             // Gắn sự kiện cho nút đăng nhập
-            //btnLogin.Click += (sender, e) => OnLoginClicked();
             SEPButton btnLogin = new SEPButton("btnLogin", "LOGIN", Color.FromArgb(31, 38, 62), Color.White, new Point(45, 328), new Size(372, 43),
                 (sender, agrs) =>
                 {
@@ -70,14 +60,14 @@ namespace SimpleEnterpriseFramework
         public void ClearUsername()
         {
             txtUsernameLogin.Text = "";
-            txtUsernameLogin.ForeColor = System.Drawing.Color.Black;
+            txtUsernameLogin.ForeColor = Color.Black;
         }
 
         public void ClearPassword()
         {
             txtPasswordLogin.UseSystemPasswordChar = false;
             txtPasswordLogin.Text = "Password";
-            txtPasswordLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            txtPasswordLogin.ForeColor = SystemColors.ScrollBar;
         }
 
         public void SetTables(List<string> tables)
@@ -98,7 +88,7 @@ namespace SimpleEnterpriseFramework
             if (txtUsernameLogin.Text == "Account" || txtUsernameLogin.Text == "! Chưa có dữ liệu")
             {
                 txtUsernameLogin.Text = "";
-                txtUsernameLogin.ForeColor = System.Drawing.Color.Black;
+                txtUsernameLogin.ForeColor = Color.Black;
             }
         }
 
@@ -107,7 +97,7 @@ namespace SimpleEnterpriseFramework
             if (txtUsernameLogin.Text == "")
             {
                 txtUsernameLogin.Text = "Account";
-                txtUsernameLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
+                txtUsernameLogin.ForeColor = SystemColors.ScrollBar;
             }
         }
 
@@ -117,7 +107,7 @@ namespace SimpleEnterpriseFramework
             {
                 txtPasswordLogin.UseSystemPasswordChar = true;
                 txtPasswordLogin.Text = "";
-                txtPasswordLogin.ForeColor = System.Drawing.Color.Black;
+                txtPasswordLogin.ForeColor = Color.Black;
             }
         }
 
@@ -127,7 +117,7 @@ namespace SimpleEnterpriseFramework
             {
                 txtPasswordLogin.UseSystemPasswordChar = false;
                 txtPasswordLogin.Text = "Password";
-                txtPasswordLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
+                txtPasswordLogin.ForeColor = SystemColors.ScrollBar;
             }
         }
 
@@ -136,12 +126,12 @@ namespace SimpleEnterpriseFramework
             if (txtUsernameLogin.Text == "Account")
             {
                 txtUsernameLogin.Text = "! Chưa có dữ liệu";
-                txtUsernameLogin.ForeColor = System.Drawing.Color.Red;
+                txtUsernameLogin.ForeColor = Color.Red;
             }
             if (txtPasswordLogin.Text == "Password")
             {
                 txtPasswordLogin.Text = "! Chưa có dữ liệu";
-                txtPasswordLogin.ForeColor = System.Drawing.Color.Red;
+                txtPasswordLogin.ForeColor = Color.Red;
             }
             if (txtUsernameLogin.Text != "Account" && txtPasswordLogin.Text != "Password" && txtUsernameLogin.Text != "" && txtPasswordLogin.Text != "" && txtUsernameLogin.Text != "! Chưa có dữ liệu" && txtPasswordLogin.Text != "! Chưa có dữ liệu")
             {
@@ -171,11 +161,6 @@ namespace SimpleEnterpriseFramework
             this.Hide();
             IRegisterForm register = IoCContainer.Resolve<IRegisterForm>();
             register.ShowForm();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void isShow_CheckedChanged(object sender, EventArgs e)

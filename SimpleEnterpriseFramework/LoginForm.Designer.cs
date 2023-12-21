@@ -137,7 +137,6 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.Controls.Add(this.isShow);
             this.panel2.Controls.Add(this.linkLabel1);
-            //this.panel2.Controls.Add(this.btnLogin);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.txtPasswordLogin);
             this.panel2.Controls.Add(this.label8);
@@ -172,21 +171,6 @@
             this.linkLabel1.Text = "Do you have an account yet?";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // btnLogin
-            // 
-            //this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
-            //this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            //this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            //this.btnLogin.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.btnLogin.ForeColor = System.Drawing.Color.White;
-            //this.btnLogin.Location = new System.Drawing.Point(45, 328);
-            //this.btnLogin.Name = "btnLogin";
-            //this.btnLogin.Size = new System.Drawing.Size(372, 43);
-            //this.btnLogin.TabIndex = 14;
-            //this.btnLogin.Text = "LOGIN";
-            //this.btnLogin.UseVisualStyleBackColor = false;
-            //this.btnLogin.Click += new System.EventHandler(this.login_Click);
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::SimpleEnterpriseFramework.Properties.Resources.PinClipart_com_ship_clipart_black_and_1303682;
@@ -196,7 +180,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 13;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // txtPasswordLogin
             // 
@@ -274,18 +257,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            //this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Login Form";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            //this.panel2.ResumeLayout(false);
-            //this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            //this.ResumeLayout(false);
 
         }
 

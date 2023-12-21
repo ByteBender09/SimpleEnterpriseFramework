@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleEnterpriseFramework.Components;
 using SimpleEnterpriseFramework.DBSetting;
@@ -36,18 +31,19 @@ namespace SimpleEnterpriseFramework
             this._tableName = tableName;
             this._sType = type;
 
-            //SEPButton btnCancel = new SEPButton("btnCancel", "Cancel", Color.FromArgb(255, 255, 255), Color.Black, new Point(116, 4), new Size(92, 32),
-            //    (sender, agrs) =>
-            //    {
-            //        btnCancel_Click(sender, agrs);
-            //    }
-            //    );
-            SEPButton btnConfirm = new SEPButton("btnConfirm", "", Color.FromArgb(255, 255, 255), Color.Black, new Point(236, 4), new Size(100, 32),
+            SEPButton btnCancel = new SEPButton("btncancel", "Cancel", Color.FromArgb(255, 255, 255), Color.Black, new Point(116, 4), new Size(92, 32), AnchorStyles.Right,
+                (sender, agrs) =>
+                {
+                    btnCancel_Click(sender, agrs);
+                }
+                );
+            SEPButton btnConfirm = new SEPButton("btnConfirm", "", Color.FromArgb(255, 255, 255), Color.Black, new Point(236, 4), new Size(100, 32), AnchorStyles.Left,
                 (sender, agrs) =>
                 {
                     btnConfirm_Click(sender, agrs);
                 }
                 );
+            buttonLayoutPanel.Controls.Add(btnCancel, 0, 0);
             buttonLayoutPanel.Controls.Add(btnConfirm, 2, 0);
             panelBtn.Controls.Add(buttonLayoutPanel);
             Controls.Add(panelBtn);

@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleEnterpriseFramework.Components;
 using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
-using SimpleEnterpriseFramework.DBSetting.MySQL;
 using SimpleEnterpriseFramework.DependencyInjection;
 using SimpleEnterpriseFramework.InterfaceForm;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace SimpleEnterpriseFramework
@@ -26,13 +17,13 @@ namespace SimpleEnterpriseFramework
         {
             InitializeComponent();
 
-            SEPButton btnConnect = new SEPButton("btnRegister", "REGISTER", Color.FromArgb(31, 38, 62), Color.White, new Point(45, 363), new Size(372, 43),
+            SEPButton btnRegister = new SEPButton("btnRegister", "REGISTER", Color.FromArgb(31, 38, 62), Color.White, new Point(45, 363), new Size(372, 43),
                 (sender, agrs) =>
                 {
                     register_Click(sender, agrs);
                 }
                 );
-            panel2.Controls.Add(btnConnect);
+            panel2.Controls.Add(btnRegister);
             Controls.Add(panel2);
             panel2.ResumeLayout(false);
             ResumeLayout(false);
@@ -55,7 +46,7 @@ namespace SimpleEnterpriseFramework
             if (txtUserNameRegister.Text == "Account" || txtUserNameRegister.Text == "! Chưa có dữ liệu")
             {
                 txtUserNameRegister.Text = "";
-                txtUserNameRegister.ForeColor = System.Drawing.Color.Black;
+                txtUserNameRegister.ForeColor = Color.Black;
             }
         }
 
@@ -64,7 +55,7 @@ namespace SimpleEnterpriseFramework
             if (txtUserNameRegister.Text == "")
             {
                 txtUserNameRegister.Text = "Account";
-                txtUserNameRegister.ForeColor = System.Drawing.SystemColors.ScrollBar;
+                txtUserNameRegister.ForeColor = SystemColors.ScrollBar;
             }
         }
 
@@ -74,7 +65,7 @@ namespace SimpleEnterpriseFramework
             {
                 txtPasswordRegister.UseSystemPasswordChar = true;
                 txtPasswordRegister.Text = "";
-                txtPasswordRegister.ForeColor = System.Drawing.Color.Black;
+                txtPasswordRegister.ForeColor = Color.Black;
             }
         }
 
@@ -84,7 +75,7 @@ namespace SimpleEnterpriseFramework
             {
                 txtPasswordRegister.UseSystemPasswordChar = false;
                 txtPasswordRegister.Text = "Password";
-                txtPasswordRegister.ForeColor = System.Drawing.SystemColors.ScrollBar;
+                txtPasswordRegister.ForeColor = SystemColors.ScrollBar;
             }
         }
 
@@ -94,7 +85,7 @@ namespace SimpleEnterpriseFramework
             {
                 txtRePassword.UseSystemPasswordChar = true;
                 txtRePassword.Text = "";
-                txtRePassword.ForeColor = System.Drawing.Color.Black;
+                txtRePassword.ForeColor = Color.Black;
             }
         }
 
@@ -104,7 +95,7 @@ namespace SimpleEnterpriseFramework
             {
                 txtRePassword.UseSystemPasswordChar = false;
                 txtRePassword.Text = "RePassword";
-                txtRePassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
+                txtRePassword.ForeColor = SystemColors.ScrollBar;
             }
         }
 
@@ -120,17 +111,17 @@ namespace SimpleEnterpriseFramework
             if (txtUserNameRegister.Text == "Account" || txtUserNameRegister.Text == "")
             {
                 txtUserNameRegister.Text = "! Chưa có dữ liệu";
-                txtUserNameRegister.ForeColor = System.Drawing.Color.Red;
+                txtUserNameRegister.ForeColor = Color.Red;
             }
             if (txtPasswordRegister.Text == "Password" || txtPasswordRegister.Text == "")
             {
                 txtPasswordRegister.Text = "! Chưa có dữ liệu";
-                txtPasswordRegister.ForeColor = System.Drawing.Color.Red;
+                txtPasswordRegister.ForeColor = Color.Red;
             }
             if (txtRePassword.Text == "RePassword")
             {
                 txtRePassword.Text = "! Chưa có dữ liệu";
-                txtRePassword.ForeColor = System.Drawing.Color.Red;
+                txtRePassword.ForeColor = Color.Red;
             }
             if (txtPasswordRegister.Text != "Password" && txtRePassword.Text != "RePassword")
             {
@@ -138,7 +129,7 @@ namespace SimpleEnterpriseFramework
                 {
                     txtRePassword.UseSystemPasswordChar = false;
                     txtRePassword.Text = "! RePassword incorrect";
-                    txtRePassword.ForeColor = System.Drawing.Color.Red;
+                    txtRePassword.ForeColor = Color.Red;
                 }
                 else if (txtPasswordRegister.Text == txtRePassword.Text && txtRePassword.Text != "! RePassword incorrect" && txtRePassword.Text != "! Chưa có dữ liệu")
                 {

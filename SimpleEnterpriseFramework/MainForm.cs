@@ -2,23 +2,95 @@
 using SimpleEnterpriseFramework.InterfaceForm;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimpleEnterpriseFramework.Components;
+using System.ComponentModel;
 
 namespace SimpleEnterpriseFramework
 {
     public partial class MainForm : Form
     {
+        private SEPButton btnDeleteRow;
         public MainForm(List<string> tables)
         {
             InitializeComponent();
+            InitializeLayout();
             InitDataGridView(tables);
+        }
+
+        private void InitializeLayout()
+        {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
+
+            SEPButton btnAddRow = new SEPButton(
+                "btnAddRow",
+                "New Row",
+                Color.FromArgb(31, 38, 62),
+                Color.White,
+                new Point(0, 79),
+                new Size(313, 64),
+                ((Image)resources.GetObject("btnAddRow.Image")),
+                (sender, args) =>
+                {
+                    btnAddRow_Click(sender, args);
+                }
+            );
+
+            SEPButton btnEditRow = new SEPButton(
+                "btnEditRow",
+                "Edit Row",
+                Color.FromArgb(31, 38, 62),
+                Color.White,
+                new Point(0, 151),
+                new Size(309, 64),
+                ((Image)resources.GetObject("btnEditRow.Image")),
+                (sender, args) =>
+                {
+                    btnAddRow_Click(sender, args);
+                }
+            );
+
+            btnDeleteRow = new SEPButton(
+                "btnDeleteRow",
+                "Delete Row",
+                Color.FromArgb(31, 38, 62),
+                Color.White,
+                new Point(0, 223),
+                new Size(309, 64),
+                ((Image)resources.GetObject("btnDeleteRow.Image")),
+                (sender, args) =>
+                {
+                    btnDelete_Click(sender, args);
+                }
+            );
+
+            btnDeleteRow.MouseEnter += new EventHandler(btnDelete_MouseEnter);
+            btnDeleteRow.MouseLeave += new EventHandler(btnDelete_MouseLeave);
+
+            SEPButton btnLogout = new SEPButton(
+                "btnLogout",
+                "Logout",
+                Color.FromArgb(31, 38, 62),
+                Color.White,
+                new Point(0, 628),
+                new Size(309, 64),
+                ((Image)resources.GetObject("btnLogout.Image")),
+                (sender, args) =>
+                {
+                    btnLogout_Click(sender, args);
+                }
+            );
+
+            panel3.Controls.Add(btnAddRow);
+            panel3.Controls.Add(btnEditRow);
+            panel3.Controls.Add(btnDeleteRow);
+            panel3.Controls.Add(btnLogout);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ResumeLayout(false);
         }
 
         private void btnDelete_MouseEnter(object sender, EventArgs e)

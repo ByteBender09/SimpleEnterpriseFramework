@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using SimpleEnterpriseFramework.DBSetting.DB;
+﻿using SimpleEnterpriseFramework.DBSetting.DB;
 using SimpleEnterpriseFramework.DBSetting;
 using System.Windows.Forms;
 
@@ -47,12 +40,8 @@ namespace SimpleEnterpriseFramework
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.dbCombobox = new System.Windows.Forms.ComboBox();
             this.lb_Tables = new System.Windows.Forms.Label();
-            this.btnDeleteRow = new System.Windows.Forms.Button();
-            this.btnEditRow = new System.Windows.Forms.Button();
-            this.btnAddRow = new System.Windows.Forms.Button();
             this.lb_service = new System.Windows.Forms.Label();
             this.pn_logo = new System.Windows.Forms.Panel();
             this.panelHeading = new System.Windows.Forms.Panel();
@@ -80,37 +69,14 @@ namespace SimpleEnterpriseFramework
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnLogout);
             this.panel3.Controls.Add(this.dbCombobox);
             this.panel3.Controls.Add(this.lb_Tables);
-            this.panel3.Controls.Add(this.btnDeleteRow);
-            this.panel3.Controls.Add(this.btnEditRow);
-            this.panel3.Controls.Add(this.btnAddRow);
             this.panel3.Controls.Add(this.lb_service);
             this.panel3.Location = new System.Drawing.Point(0, 90);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(313, 689);
             this.panel3.TabIndex = 1;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
-            this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogout.Location = new System.Drawing.Point(0, 628);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnLogout.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnLogout.Size = new System.Drawing.Size(309, 64);
-            this.btnLogout.TabIndex = 6;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // dbCombobox
             // 
@@ -135,65 +101,6 @@ namespace SimpleEnterpriseFramework
             this.lb_Tables.Size = new System.Drawing.Size(97, 37);
             this.lb_Tables.TabIndex = 4;
             this.lb_Tables.Text = "Tables";
-            // 
-            // btnDeleteRow
-            // 
-            this.btnDeleteRow.FlatAppearance.BorderSize = 0;
-            this.btnDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteRow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteRow.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteRow.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteRow.Image")));
-            this.btnDeleteRow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteRow.Location = new System.Drawing.Point(0, 223);
-            this.btnDeleteRow.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeleteRow.Name = "btnDeleteRow";
-            this.btnDeleteRow.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnDeleteRow.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnDeleteRow.Size = new System.Drawing.Size(309, 64);
-            this.btnDeleteRow.TabIndex = 3;
-            this.btnDeleteRow.Text = "Delete Row";
-            this.btnDeleteRow.UseVisualStyleBackColor = true;
-            this.btnDeleteRow.MouseEnter += new System.EventHandler(this.btnDelete_MouseEnter);
-            this.btnDeleteRow.MouseLeave += new System.EventHandler(this.btnDelete_MouseLeave);
-            this.btnDeleteRow.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEditRow
-            // 
-            this.btnEditRow.FlatAppearance.BorderSize = 0;
-            this.btnEditRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditRow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditRow.ForeColor = System.Drawing.Color.White;
-            this.btnEditRow.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRow.Image")));
-            this.btnEditRow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditRow.Location = new System.Drawing.Point(0, 151);
-            this.btnEditRow.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEditRow.Name = "btnEditRow";
-            this.btnEditRow.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnEditRow.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnEditRow.Size = new System.Drawing.Size(309, 64);
-            this.btnEditRow.TabIndex = 2;
-            this.btnEditRow.Text = "Edit Row";
-            this.btnEditRow.UseVisualStyleBackColor = true;
-            this.btnEditRow.Click += new System.EventHandler(this.btnEditRow_Click);
-            // 
-            // btnAddRow
-            // 
-            this.btnAddRow.FlatAppearance.BorderSize = 0;
-            this.btnAddRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddRow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRow.ForeColor = System.Drawing.Color.White;
-            this.btnAddRow.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRow.Image")));
-            this.btnAddRow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRow.Location = new System.Drawing.Point(0, 79);
-            this.btnAddRow.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddRow.Name = "btnAddRow";
-            this.btnAddRow.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnAddRow.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAddRow.Size = new System.Drawing.Size(313, 64);
-            this.btnAddRow.TabIndex = 1;
-            this.btnAddRow.Text = "New Row";
-            this.btnAddRow.UseVisualStyleBackColor = true;
-            this.btnAddRow.Click += new System.EventHandler(this.btnAddRow_Click);
             // 
             // lb_service
             // 
@@ -294,12 +201,9 @@ namespace SimpleEnterpriseFramework
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Manage DB Form";
             this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panelHeading.ResumeLayout(false);
             this.panelHeading.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            this.ResumeLayout(false);
         }
 
         #endregion
@@ -311,12 +215,8 @@ namespace SimpleEnterpriseFramework
         private System.Windows.Forms.Panel panelHeading;
         private System.Windows.Forms.Label lb_viewdata;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnAddRow;
-        private System.Windows.Forms.Button btnEditRow;
-        private System.Windows.Forms.Button btnDeleteRow;
         private System.Windows.Forms.Label lb_Tables;
         private System.Windows.Forms.ComboBox dbCombobox;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.Button btnLogout;
     }
 }

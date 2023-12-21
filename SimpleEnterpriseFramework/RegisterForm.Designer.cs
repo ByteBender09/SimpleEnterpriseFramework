@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
-            this.btnRegister = new System.Windows.Forms.Button();
             this.txtPasswordRegister = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtUserNameRegister = new System.Windows.Forms.TextBox();
@@ -56,21 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnRegister
-            // 
-            //this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(38)))), ((int)(((byte)(62)))));
-            //this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
-            //this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            //this.btnRegister.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.btnRegister.ForeColor = System.Drawing.Color.White;
-            //this.btnRegister.Location = new System.Drawing.Point(45, 363);
-            //this.btnRegister.Name = "btnRegister";
-            //this.btnRegister.Size = new System.Drawing.Size(372, 43);
-            //this.btnRegister.TabIndex = 14;
-            //this.btnRegister.Text = "REGISTER";
-            //this.btnRegister.UseVisualStyleBackColor = false;
-            //this.btnRegister.Click += new System.EventHandler(this.register_Click);
             // 
             // txtPasswordRegister
             // 
@@ -130,7 +114,6 @@
             this.panel2.Controls.Add(this.txtRePassword);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.linkLabel1);
-            //this.panel2.Controls.Add(this.btnRegister);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.txtPasswordRegister);
             this.panel2.Controls.Add(this.label8);
@@ -321,14 +304,11 @@
             this.MaximizeBox = false;
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
-            //this.panel2.ResumeLayout(false);
-            //this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            //this.ResumeLayout(false);
 
         }
 
