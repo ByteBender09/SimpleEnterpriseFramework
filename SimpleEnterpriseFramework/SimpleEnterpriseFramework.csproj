@@ -109,13 +109,16 @@
     <Compile Include="DBSetting\DB\DatabaseProcessor.cs" />
     <Compile Include="DBSetting\DB\SqlServerDAO.cs" />
     <Compile Include="DBSetting\DB\SqlServerProcessor.cs" />
+    <Compile Include="DBSetting\Membership\ChainOfResponsibilityMB\IMembershipHandler.cs" />
     <Compile Include="DBSetting\Membership\HashPassword.cs" />
+    <Compile Include="DBSetting\Membership\ChainOfResponsibilityMB\LogInCOR.cs" />
     <Compile Include="DBSetting\Membership\Membership.cs" />
+    <Compile Include="DBSetting\Membership\ChainOfResponsibilityMB\RegisterCOR.cs" />
     <Compile Include="DBSetting\MySQL\MySQL.cs" />
     <Compile Include="DBSetting\SingletonDatabase.cs" />
     <Compile Include="DependencyInjection\IoCContainer.cs" />
     <Compile Include="Factories\FactoryPanel.cs" />
-    <Compile Include="FormTextField.cs" />
+    <Compile Include="Components\FormTextField.cs" />
     <Compile Include="HandleForm.cs">
       <SubType>Form</SubType>
     </Compile>

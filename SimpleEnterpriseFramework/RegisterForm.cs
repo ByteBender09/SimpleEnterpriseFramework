@@ -108,47 +108,11 @@ namespace SimpleEnterpriseFramework
 
         private void register_Click(object sender, EventArgs e)
         {
-            if (txtUserNameRegister.Text == "Account" || txtUserNameRegister.Text == "")
-            {
-                txtUserNameRegister.Text = "! Chưa có dữ liệu";
-                txtUserNameRegister.ForeColor = Color.Red;
-            }
-            if (txtPasswordRegister.Text == "Password" || txtPasswordRegister.Text == "")
-            {
-                txtPasswordRegister.Text = "! Chưa có dữ liệu";
-                txtPasswordRegister.ForeColor = Color.Red;
-            }
-            if (txtRePassword.Text == "RePassword")
-            {
-                txtRePassword.Text = "! Chưa có dữ liệu";
-                txtRePassword.ForeColor = Color.Red;
-            }
-            if (txtPasswordRegister.Text != "Password" && txtRePassword.Text != "RePassword")
-            {
-                if (txtPasswordRegister.Text != txtRePassword.Text && txtRePassword.Text != "! RePassword incorrect" && txtRePassword.Text != "! Chưa có dữ liệu")
-                {
-                    txtRePassword.UseSystemPasswordChar = false;
-                    txtRePassword.Text = "! RePassword incorrect";
-                    txtRePassword.ForeColor = Color.Red;
-                }
-                else if (txtPasswordRegister.Text == txtRePassword.Text && txtRePassword.Text != "! RePassword incorrect" && txtRePassword.Text != "! Chưa có dữ liệu")
-                {
-                    string username = txtUserNameRegister.Text.Trim();
-                    string password = HashPassword.hashPassword(txtPasswordRegister.Text.Trim());
-                    Membership p = new Membership(SingletonDatabase.getInstance().connString);
-                    if (p.Register(username, password))
-                    {
-                        MessageBox.Show("Đăng ký thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Hide();
-                        ILoginForm login = IoCContainer.Resolve<ILoginForm>();
-                        login.ShowForm();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Đăng ký thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
+            string username = txtUserNameRegister.Text.Trim();
+            string password = HashPassword.hashPassword(txtPasswordRegister.Text.Trim());
+
+            RegisterHandlerChain registerHandlerChain = new RegisterHandlerChain();
+            registerHandlerChain.TryRegister(username, password, txtRePassword.Text.Trim(), txtUserNameRegister, txtPasswordRegister, txtRePassword);
         }
 
         private void isShow_CheckedChanged(object sender, EventArgs e)

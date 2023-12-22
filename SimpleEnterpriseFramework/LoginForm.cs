@@ -34,7 +34,7 @@ namespace SimpleEnterpriseFramework
 
         public void ShowForm()
         {
-            this.ShowDialog();
+            this.Show();
         }
 
         public void HideForm()
@@ -123,25 +123,19 @@ namespace SimpleEnterpriseFramework
 
         private void login_Click(object sender, EventArgs e)
         {
-            if (txtUsernameLogin.Text == "Account")
+            string username = txtUsernameLogin.Text.Trim();
+            string password = HashPassword.hashPassword(txtPasswordLogin.Text.Trim());
+
+            LoginHandlerChain loginHandlerChain = new LoginHandlerChain();
+            bool canLogin = loginHandlerChain.TryLogin(username, password, txtUsernameLogin, txtPasswordLogin);
+
+            if (canLogin)
             {
-                txtUsernameLogin.Text = "! Chưa có dữ liệu";
-                txtUsernameLogin.ForeColor = Color.Red;
-            }
-            if (txtPasswordLogin.Text == "Password")
-            {
-                txtPasswordLogin.Text = "! Chưa có dữ liệu";
-                txtPasswordLogin.ForeColor = Color.Red;
-            }
-            if (txtUsernameLogin.Text != "Account" && txtPasswordLogin.Text != "Password" && txtUsernameLogin.Text != "" && txtPasswordLogin.Text != "" && txtUsernameLogin.Text != "! Chưa có dữ liệu" && txtPasswordLogin.Text != "! Chưa có dữ liệu")
-            {
-                string username = txtUsernameLogin.Text.Trim();
-                string password = HashPassword.hashPassword(txtPasswordLogin.Text.Trim());
                 Membership p = new Membership(SingletonDatabase.getInstance().connString);
                 if (p.Login(username, password))
                 {
                     MessageBox.Show("Đăng nhập thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Hide();
+                    this.Close();
 
                     // Get list tables name in database
                     List<string> tables = SingletonDatabase.getInstance().GetAllTablesName();
@@ -155,10 +149,11 @@ namespace SimpleEnterpriseFramework
             }
         }
 
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            HideForm();
             IoCContainer.Register<IRegisterForm, RegisterForm>();
-            this.Hide();
             IRegisterForm register = IoCContainer.Resolve<IRegisterForm>();
             register.ShowForm();
         }
