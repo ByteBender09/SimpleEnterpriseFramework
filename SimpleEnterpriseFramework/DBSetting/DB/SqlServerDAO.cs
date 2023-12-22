@@ -1,10 +1,9 @@
-﻿using System;
+﻿using SimpleEnterpriseFramework.Logger;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleEnterpriseFramework.DBSetting.DB
@@ -12,6 +11,8 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
     class SqlServerDAO : DatabaseDAO
     {
         //constructor
+        ILogger textFileLogger = new TextFileLogger();
+
         public SqlServerDAO(string connection)
         {
             databaseProcessor = new SqlServerProcessor(connection);
@@ -42,18 +43,26 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
         public override bool CreateNewUser(string username, string password)
         {
+            ILogger errorLogger = new ErrorLogger(textFileLogger);
+            ILogger successLogger = new SuccessLogger(textFileLogger);
+
             string sql1 = $"select * from member where username = '{username}'";
             DataTable dataTable = databaseProcessor.GetAllData(sql1);
             bool userExisted = dataTable.Rows.Count != 0;
             if (userExisted)
             {
+                errorLogger.Log("Error create new user.");
                 return false;
             }
             else
             {
                 string sql2 = $"insert into member values('{username}', '{password}', 'false')";
                 if (databaseProcessor.QueryData(sql2) != 0)
+                {
+                    successLogger.Log("Success create new user.");
                     return true;
+                }
+
                 return false;
             }
         }
@@ -124,6 +133,8 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
         public override bool Insert(Dictionary<string, object> data, string tableName)
         {
+            ILogger errorLogger = new ErrorLogger(textFileLogger);
+            ILogger successLogger = new SuccessLogger(textFileLogger);
             string columns = string.Join(", ", data.Keys);
             string parameters = string.Join(", ", data.Keys.Select(k => "@" + k));
 
@@ -134,17 +145,20 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
                 int rowsAffected = databaseProcessor.QueryDataNoMatterEncodingType(sql, data);
                 if (rowsAffected > 0)
                 {
+                    successLogger.Log("Success insert.");
                     MessageBox.Show("Thêm thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
                 {
+                    errorLogger.Log("Error insert.");
                     MessageBox.Show("Thêm thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
             catch (Exception ex)
             {
+                errorLogger.Log("Error insert.");
                 MessageBox.Show("Thêm thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw ex;
             }
@@ -152,6 +166,8 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
         public override bool Update(Dictionary<string, object> data, string tableName)
         {
+            ILogger errorLogger = new ErrorLogger(textFileLogger);
+            ILogger successLogger = new SuccessLogger(textFileLogger);
             string primaryKey = GetPrimaryKey(tableName);
             string columnsToUpdate = string.Join(", ", data.Where(kv => kv.Key != primaryKey).Select(kv =>
             {
@@ -169,17 +185,20 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
                 int rowsAffected = databaseProcessor.QueryDataNoMatterEncodingType(sql, data);
                 if (rowsAffected > 0)
                 {
+                    successLogger.Log("Success update.");
                     MessageBox.Show("Cập nhật thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
                 {
+                    errorLogger.Log("Error update.");
                     MessageBox.Show("Cập nhật thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
             catch (Exception ex)
             {
+                errorLogger.Log("Error update.");
                 MessageBox.Show("Cập nhật thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw ex;
             }
@@ -188,6 +207,8 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
         public override bool Delete(string tableName, object valueOfPrimaryKey)
         {
+            ILogger errorLogger = new ErrorLogger(textFileLogger);
+            ILogger successLogger = new SuccessLogger(textFileLogger);
             string primaryKey = GetPrimaryKey(tableName);
             string sql = "";
             if (valueOfPrimaryKey.GetType() == typeof(string))
@@ -195,10 +216,12 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             else sql = $"delete from {tableName} where {primaryKey} = {valueOfPrimaryKey}";
             try
             {
+                successLogger.Log("Success delete.");
                 databaseProcessor.QueryData(sql);
             }
             catch (Exception ex)
             {
+                errorLogger.Log("Error delete.");
                 throw ex;
             }
             return true;
@@ -206,6 +229,8 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
         public override bool Delete(string tableName, Dictionary<string, object> data)
         {
+            ILogger errorLogger = new ErrorLogger(textFileLogger);
+            ILogger successLogger = new SuccessLogger(textFileLogger);
             string primaryKey = data.Keys.FirstOrDefault();
 
             if (primaryKey == null)
@@ -225,17 +250,20 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
 
                 if (rowsAffected > 0)
                 {
+                    successLogger.Log("Success delete.");
                     MessageBox.Show("Xóa thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
                 {
+                    errorLogger.Log("Error delete.");
                     MessageBox.Show("Không có dữ liệu để xóa hoặc xóa thất bại", "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
             catch (Exception ex)
             {
+                errorLogger.Log("Error delete.");
                 MessageBox.Show("Xóa thất bại: " + ex.Message, "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

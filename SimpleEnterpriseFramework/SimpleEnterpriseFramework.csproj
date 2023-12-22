@@ -125,6 +125,8 @@
     </Compile>
     <Compile Include="InterfaceForm\ILoginForm.cs" />
     <Compile Include="InterfaceForm\IRegisterForm.cs" />
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\LoggerImp.cs" />
     <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>

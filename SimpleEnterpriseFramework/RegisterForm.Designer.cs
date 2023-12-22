@@ -299,7 +299,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            //this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "RegisterForm";
@@ -313,8 +312,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox txtPasswordRegister;
         private System.Windows.Forms.Label label8;
