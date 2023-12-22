@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SimpleEnterpriseFramework.DependencyInjection;
-using SimpleEnterpriseFramework.Components;
 using SimpleEnterpriseFramework.InterfaceForm;
 
 namespace SimpleEnterpriseFramework
@@ -15,12 +14,17 @@ namespace SimpleEnterpriseFramework
         {
             InitializeComponent();
             comboBox1.Items.AddRange(databaseNames.ToArray());
-            SEPButton btnConnect = new SEPButton("btnConnect", "CONNECT", Color.White, Color.FromArgb(31, 38, 62), new Point(130, 208), new Size(130, 43),
-                (sender, agrs) =>
-                {
-                    btnConnect_Click(sender, agrs);
-                }
-                );
+      
+            Button btnConnect = new SEPButtonBuilder()
+                .WithName("btnConnect")
+                .WithText("CONNECT")
+                .WithBackColor(Color.White)
+                .WithForeColor(Color.FromArgb(31, 38, 62))
+                .WithLocation(new Point(130, 208))
+                .WithSize(new Size(130, 43))
+                .WithEventHandler((sender, e) => { btnConnect_Click(sender, e);  })
+                .Build();
+
             panel1.Controls.Add(btnConnect);
             Controls.Add(panel1);
             panel1.ResumeLayout(false);

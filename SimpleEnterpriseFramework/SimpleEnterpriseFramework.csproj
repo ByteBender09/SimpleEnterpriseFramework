@@ -101,9 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\SEPButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Components\ButtonBuilder.cs" />
     <Compile Include="DBSetting\Database.cs" />
     <Compile Include="DBSetting\DB\DatabaseDAO.cs" />
     <Compile Include="DBSetting\DB\DatabaseProcessor.cs" />

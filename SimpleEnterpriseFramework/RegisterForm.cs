@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using SimpleEnterpriseFramework.Components;
-using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
-using SimpleEnterpriseFramework.DBSetting.MemberShip;
-using SimpleEnterpriseFramework.DependencyInjection;
 using SimpleEnterpriseFramework.InterfaceForm;
 
 
@@ -17,12 +13,16 @@ namespace SimpleEnterpriseFramework
         {
             InitializeComponent();
 
-            SEPButton btnRegister = new SEPButton("btnRegister", "REGISTER", Color.FromArgb(31, 38, 62), Color.White, new Point(45, 363), new Size(372, 43),
-                (sender, agrs) =>
-                {
-                    register_Click(sender, agrs);
-                }
-                );
+            Button btnRegister = new SEPButtonBuilder()
+                .WithName("btnRegister")
+                .WithText("REGISTER")
+                .WithBackColor(Color.FromArgb(31, 38, 62))
+                .WithForeColor(Color.White)
+                .WithLocation(new Point(45, 363))
+                .WithSize(new Size(372, 43))
+                .WithEventHandler((sender, e) => { register_Click(sender, e); })
+                .Build();
+
             panel2.Controls.Add(btnRegister);
             Controls.Add(panel2);
             panel2.ResumeLayout(false);

@@ -1,5 +1,4 @@
-﻿
-using SimpleEnterpriseFramework.DBSetting;
+﻿using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
 using SimpleEnterpriseFramework.DependencyInjection;
 using SimpleEnterpriseFramework.InterfaceForm;

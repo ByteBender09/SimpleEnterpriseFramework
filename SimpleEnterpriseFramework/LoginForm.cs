@@ -7,7 +7,6 @@ using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
 using SimpleEnterpriseFramework.InterfaceForm;
 using SimpleEnterpriseFramework.DependencyInjection;
-using SimpleEnterpriseFramework.Components;
 
 namespace SimpleEnterpriseFramework
 {
@@ -20,12 +19,16 @@ namespace SimpleEnterpriseFramework
             InitializeComponent();
 
             // Gắn sự kiện cho nút đăng nhập
-            SEPButton btnLogin = new SEPButton("btnLogin", "LOGIN", Color.FromArgb(31, 38, 62), Color.White, new Point(45, 328), new Size(372, 43),
-                (sender, agrs) =>
-                {
-                    login_Click(sender, agrs);
-                }
-                );
+            Button btnLogin = new SEPButtonBuilder()
+                .WithName("btnLogin")
+                .WithText("LOGIN")
+                .WithBackColor(Color.FromArgb(31, 38, 62))
+                .WithForeColor(Color.White)
+                .WithLocation(new Point(45, 328))
+                .WithSize(new Size(372, 43))
+                .WithEventHandler((sender, e) => { login_Click(sender, e); })
+                .Build();
+
             panel2.Controls.Add(btnLogin);
             Controls.Add(panel2);
             panel2.ResumeLayout(false);

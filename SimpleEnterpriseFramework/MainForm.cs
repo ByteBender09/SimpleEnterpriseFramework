@@ -6,14 +6,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using SimpleEnterpriseFramework.Components;
 using System.ComponentModel;
 
 namespace SimpleEnterpriseFramework
 {
     public partial class MainForm : Form
     {
-        private SEPButton btnDeleteRow;
+        private Button btnDeleteRow;
         public MainForm(List<string> tables)
         {
             InitializeComponent();
@@ -25,64 +24,51 @@ namespace SimpleEnterpriseFramework
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
 
-            SEPButton btnAddRow = new SEPButton(
-                "btnAddRow",
-                "New Row",
-                Color.FromArgb(31, 38, 62),
-                Color.White,
-                new Point(0, 79),
-                new Size(313, 64),
-                ((Image)resources.GetObject("btnAddRow.Image")),
-                (sender, args) =>
-                {
-                    btnAddRow_Click(sender, args);
-                }
-            );
+            Button btnAddRow = new SEPButtonBuilder()
+                .WithName("btnAddRow")
+                .WithText("New Row")
+                .WithBackColor(Color.FromArgb(31, 38, 62))
+                .WithForeColor(Color.White)
+                .WithLocation(new Point(0, 79))
+                .WithSize(new Size(313, 64))
+                .WithEventHandler((sender, e) => { btnAddRow_Click(sender, e); })
+                .WithImage((Image)resources.GetObject("btnAddRow.Image"))
+                .Build();
 
-            SEPButton btnEditRow = new SEPButton(
-                "btnEditRow",
-                "Edit Row",
-                Color.FromArgb(31, 38, 62),
-                Color.White,
-                new Point(0, 151),
-                new Size(309, 64),
-                ((Image)resources.GetObject("btnEditRow.Image")),
-                (sender, args) =>
-                {
-                    btnAddRow_Click(sender, args);
-                }
-            );
+            Button btnEditRow = new SEPButtonBuilder()
+                .WithName("btnEditRow")
+                .WithText("Edit Row")
+                .WithBackColor(Color.FromArgb(31, 38, 62))
+                .WithForeColor(Color.White)
+                .WithLocation(new Point(0, 151))
+                .WithSize(new Size(309, 64))
+                .WithEventHandler((sender, e) => { btnEditRow_Click(sender, e); })
+                .WithImage((Image)resources.GetObject("btnEditRow.Image"))
+                .Build();
 
-            btnDeleteRow = new SEPButton(
-                "btnDeleteRow",
-                "Delete Row",
-                Color.FromArgb(31, 38, 62),
-                Color.White,
-                new Point(0, 223),
-                new Size(309, 64),
-                ((Image)resources.GetObject("btnDeleteRow.Image")),
-                (sender, args) =>
-                {
-                    btnDelete_Click(sender, args);
-                }
-            );
+             btnDeleteRow = new SEPButtonBuilder()
+                .WithName("btnDeleteRow")
+                .WithText("Delete Row")
+                .WithBackColor(Color.FromArgb(31, 38, 62))
+                .WithForeColor(Color.White)
+                .WithLocation(new Point(0, 223))
+                .WithSize(new Size(309, 64))
+                .WithEventHandler((sender, e) => { btnDelete_Click(sender, e); })
+                .WithMouseEnterEventHandler(new EventHandler(btnDelete_MouseEnter))
+                .WithMouseLeaveEventHandler(new EventHandler(btnDelete_MouseLeave))
+                .WithImage((Image)resources.GetObject("btnDeleteRow.Image"))
+                .Build();
 
-            btnDeleteRow.MouseEnter += new EventHandler(btnDelete_MouseEnter);
-            btnDeleteRow.MouseLeave += new EventHandler(btnDelete_MouseLeave);
-
-            SEPButton btnLogout = new SEPButton(
-                "btnLogout",
-                "Logout",
-                Color.FromArgb(31, 38, 62),
-                Color.White,
-                new Point(0, 628),
-                new Size(309, 64),
-                ((Image)resources.GetObject("btnLogout.Image")),
-                (sender, args) =>
-                {
-                    btnLogout_Click(sender, args);
-                }
-            );
+            Button btnLogout = new SEPButtonBuilder()
+                .WithName("btnLogout")
+                .WithText("Logout")
+                .WithBackColor(Color.FromArgb(31, 38, 62))
+                .WithForeColor(Color.White)
+                .WithLocation(new Point(0, 628))
+                .WithSize(new Size(309, 64))
+                .WithEventHandler((sender, e) => { btnLogout_Click(sender, e); })
+                .WithImage((Image)resources.GetObject("btnLogout.Image"))
+                .Build();
 
             panel3.Controls.Add(btnAddRow);
             panel3.Controls.Add(btnEditRow);

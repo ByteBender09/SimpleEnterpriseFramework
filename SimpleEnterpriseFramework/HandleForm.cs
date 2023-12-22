@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using SimpleEnterpriseFramework.Components;
 using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.DB;
 using SimpleEnterpriseFramework.Factories;
@@ -31,18 +30,29 @@ namespace SimpleEnterpriseFramework
             this._tableName = tableName;
             this._sType = type;
 
-            SEPButton btnCancel = new SEPButton("btncancel", "Cancel", Color.FromArgb(255, 255, 255), Color.Black, new Point(116, 4), new Size(92, 32), AnchorStyles.Right,
-                (sender, agrs) =>
-                {
-                    btnCancel_Click(sender, agrs);
-                }
-                );
-            SEPButton btnConfirm = new SEPButton("btnConfirm", "", Color.FromArgb(255, 255, 255), Color.Black, new Point(236, 4), new Size(100, 32), AnchorStyles.Left,
-                (sender, agrs) =>
-                {
-                    btnConfirm_Click(sender, agrs);
-                }
-                );
+            Button btnCancel = new SEPButtonBuilder()
+                .WithName("btncancel")
+                .WithText("Cancel")
+                .WithBackColor(Color.FromArgb(255, 255, 255))
+                .WithForeColor(Color.Black)
+                .WithLocation(new Point(130, 208))
+                .WithSize(new Size(116, 4))
+                .WithAnchorStyles(AnchorStyles.Right)
+                .WithEventHandler((sender, e) => { btnCancel_Click(sender, e); })
+                .Build();
+
+
+            Button btnConfirm = new SEPButtonBuilder()
+                .WithName("btnConfirm")
+                .WithText("")
+                .WithBackColor(Color.FromArgb(255, 255, 255))
+                .WithForeColor(Color.Black)
+                .WithLocation(new Point(236, 4))
+                .WithSize(new Size(100, 32))
+                .WithAnchorStyles(AnchorStyles.Left)
+                .WithEventHandler((sender, e) => { btnConfirm_Click(sender, e); })
+                .Build();
+
             buttonLayoutPanel.Controls.Add(btnCancel, 0, 0);
             buttonLayoutPanel.Controls.Add(btnConfirm, 2, 0);
             panelBtn.Controls.Add(buttonLayoutPanel);
@@ -78,8 +88,6 @@ namespace SimpleEnterpriseFramework
 
 
             Controls.Add(panelBody);
-
-
         }
 
         public Dictionary<string, object> GetFormDataAsDict()
