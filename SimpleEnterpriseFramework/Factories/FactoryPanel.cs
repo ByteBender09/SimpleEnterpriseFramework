@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SimpleEnterpriseFramework.Factories
@@ -19,6 +20,14 @@ namespace SimpleEnterpriseFramework.Factories
 
             panel.Controls.Add(new Control());
             return panel;
+        }
+        public void CreateFLPanelControls(Panel panel, string panelName, Size size, Point point, int tabIndex, Color backColor)
+        {
+            panel.Name = panelName;
+            panel.Size = size;
+            panel.Location = point;
+            panel.TabIndex = tabIndex;
+            panel.BackColor = backColor;
         }
     }
 }

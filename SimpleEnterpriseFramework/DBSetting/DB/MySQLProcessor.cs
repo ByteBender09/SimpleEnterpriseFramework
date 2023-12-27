@@ -2,31 +2,29 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace SimpleEnterpriseFramework.DBSetting.DB
 {
-    class SqlServerProcessor: DatabaseProcessor
+    class MySqlProcessor : DatabaseProcessor
     {
-        protected SqlConnection connectionSqlServer;
+        protected MySqlConnection connectionMySQL;
 
-        public SqlServerProcessor(string connection)
+        public MySqlProcessor(string connection)
         {
-            this.connectionSqlServer = new SqlConnection(connection);
+            this.connectionMySQL = new MySqlConnection(connection);
         }
 
         public override DataTable GetAllData(string sqlCommand)
         {
-            connectionSqlServer.Open();
+            connectionMySQL.Open();
             try
             {
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand, connectionSqlServer);
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(sqlCommand, connectionMySQL);
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
 
-                connectionSqlServer.Close();
+                connectionMySQL.Close();
                 return dataTable;
             }
             catch (Exception e)
@@ -36,30 +34,30 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             }
             finally
             {
-                connectionSqlServer.Close();
+                connectionMySQL.Close();
             }
         }
 
         public override bool isExist(string sqlCommand)
         {
-            SqlCommand sqlCommand1 = new SqlCommand(sqlCommand, connectionSqlServer);
-            connectionSqlServer.Open();
+            MySqlCommand sqlCommand1 = new MySqlCommand(sqlCommand, connectionMySQL);
+            connectionMySQL.Open();
 
-            SqlDataReader reader = sqlCommand1.ExecuteReader();
-            //return true if have more than 1 row
+            MySqlDataReader reader = sqlCommand1.ExecuteReader();
+            // return true if have more than 1 row
             if (reader.Read() == true)
             {
-                connectionSqlServer.Close();
+                connectionMySQL.Close();
                 return true;
             }
-            connectionSqlServer.Close();
+            connectionMySQL.Close();
             return false;
         }
 
         public override int QueryData(string sqlCommand)
         {
-            SqlCommand sqlCommand1 = new SqlCommand(sqlCommand, connectionSqlServer);
-            connectionSqlServer.Open();
+            MySqlCommand sqlCommand1 = new MySqlCommand(sqlCommand, connectionMySQL);
+            connectionMySQL.Open();
 
             int i = 1;
             try
@@ -72,21 +70,21 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             }
             finally
             {
-                connectionSqlServer.Close();
+                connectionMySQL.Close();
             }
             return i;
         }
 
         public override int QueryDataNoMatterEncodingType(string sqlCommand, Dictionary<string, object> parameters)
         {
-            SqlCommand sqlCommand1 = new SqlCommand(sqlCommand, connectionSqlServer);
+            MySqlCommand sqlCommand1 = new MySqlCommand(sqlCommand, connectionMySQL);
 
             foreach (var entry in parameters)
             {
                 sqlCommand1.Parameters.AddWithValue("@" + entry.Key, entry.Value ?? DBNull.Value);
             }
 
-            connectionSqlServer.Open();
+            connectionMySQL.Open();
             int rowsAffected = 0;
             try
             {
@@ -98,10 +96,9 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             }
             finally
             {
-                connectionSqlServer.Close();
+                connectionMySQL.Close();
             }
             return rowsAffected;
         }
-
     }
 }

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using SEPFramework.Forms;
 using SimpleEnterpriseFramework.DBSetting;
 using SimpleEnterpriseFramework.DBSetting.DB;
 using SimpleEnterpriseFramework.Factories;
 
 namespace SimpleEnterpriseFramework
 {
-    public partial class HandleForm : Form
+    public partial class HandleForm : SEPForm
     {
         public enum SaveType
         {
@@ -23,7 +24,7 @@ namespace SimpleEnterpriseFramework
         SqlServerDAO sqlServerDAO = new SqlServerDAO(SingletonDatabase.getInstance().connString);
         string _tableName = "";
 
-        public HandleForm(MainForm mainForm, SaveType type, DataGridViewRow row, string tableName)
+        public HandleForm(MainForm mainForm, SaveType type, DataGridViewRow row, string tableName) : base(tableName, "Handle Form", new Size(width: 480, height: 450))
         {
             InitializeComponent();
             this.mainFormRef = mainForm;

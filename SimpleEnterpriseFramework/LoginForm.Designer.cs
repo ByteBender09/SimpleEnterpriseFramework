@@ -36,19 +36,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pn_logo = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.isShow = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnLogin = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.txtPasswordLogin = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtUsernameLogin = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -132,23 +128,6 @@
             this.pn_logo.Size = new System.Drawing.Size(260, 52);
             this.pn_logo.TabIndex = 1;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel2.Controls.Add(this.isShow);
-            this.panel2.Controls.Add(this.linkLabel1);
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.txtPasswordLogin);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.txtUsernameLogin);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(335, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(468, 452);
-            this.panel2.TabIndex = 1;
-            // 
             // isShow
             // 
             this.isShow.AutoSize = true;
@@ -181,20 +160,6 @@
             this.pictureBox2.TabIndex = 13;
             this.pictureBox2.TabStop = false;
             // 
-            // txtPasswordLogin
-            // 
-            this.txtPasswordLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPasswordLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPasswordLogin.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtPasswordLogin.Location = new System.Drawing.Point(111, 216);
-            this.txtPasswordLogin.Name = "txtPasswordLogin";
-            this.txtPasswordLogin.Size = new System.Drawing.Size(306, 20);
-            this.txtPasswordLogin.TabIndex = 12;
-            this.txtPasswordLogin.TabStop = false;
-            this.txtPasswordLogin.Text = "Password";
-            this.txtPasswordLogin.Enter += new System.EventHandler(this.textPassword_Enter);
-            this.txtPasswordLogin.Leave += new System.EventHandler(this.textPassword_Leave);
-            // 
             // label8
             // 
             this.label8.AllowDrop = true;
@@ -206,18 +171,6 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "label8";
             this.label8.UseMnemonic = false;
-            // 
-            // txtUsernameLogin
-            // 
-            this.txtUsernameLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsernameLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsernameLogin.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.txtUsernameLogin.Location = new System.Drawing.Point(111, 140);
-            this.txtUsernameLogin.Name = "txtUsernameLogin";
-            this.txtUsernameLogin.Size = new System.Drawing.Size(306, 20);
-            this.txtUsernameLogin.TabIndex = 9;
-            this.txtUsernameLogin.Enter += new System.EventHandler(this.textUserName_Enter);
-            this.txtUsernameLogin.Leave += new System.EventHandler(this.textUserName_Leave);
             // 
             // label7
             // 
@@ -256,7 +209,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
@@ -277,12 +229,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox txtUsernameLogin;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtPasswordLogin;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnLogin;

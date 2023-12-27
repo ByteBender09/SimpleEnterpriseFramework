@@ -33,7 +33,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtUserNameRegister = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.isShow = new System.Windows.Forms.CheckBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtRePassword = new System.Windows.Forms.TextBox();
@@ -49,7 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pn_logo = new System.Windows.Forms.Panel();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -105,26 +103,6 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "label7";
             this.label7.UseMnemonic = false;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel2.Controls.Add(this.isShow);
-            this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.txtRePassword);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.linkLabel1);
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.txtPasswordRegister);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.txtUserNameRegister);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(333, -1);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(468, 452);
-            this.panel2.TabIndex = 3;
             // 
             // isShow
             // 
@@ -298,7 +276,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "RegisterForm";
@@ -317,7 +294,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtUserNameRegister;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label6;

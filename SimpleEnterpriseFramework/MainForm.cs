@@ -7,13 +7,14 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.ComponentModel;
+using SEPFramework.Forms;
 
 namespace SimpleEnterpriseFramework
 {
-    public partial class MainForm : Form
+    public partial class MainForm : SEPForm
     {
         private Button btnDeleteRow;
-        public MainForm(List<string> tables)
+        public MainForm(List<string> tables, string name) : base(name, "Main Form", new Size(1540, 813))
         {
             InitializeComponent();
             InitializeLayout();

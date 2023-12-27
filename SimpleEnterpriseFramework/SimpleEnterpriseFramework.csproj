@@ -101,11 +101,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\SEPForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\TextBoxBuilder.cs" />
     <Compile Include="Components\ButtonBuilder.cs" />
     <Compile Include="DBSetting\Database.cs" />
     <Compile Include="DBSetting\DB\DatabaseDAO.cs" />
     <Compile Include="DBSetting\DB\DatabaseProcessor.cs" />
+    <Compile Include="DBSetting\DB\MySQLDAO.cs" />
     <Compile Include="DBSetting\DB\SqlServerDAO.cs" />
+    <Compile Include="DBSetting\DB\MySQLProcessor.cs" />
     <Compile Include="DBSetting\DB\SqlServerProcessor.cs" />
     <Compile Include="DBSetting\Membership\ChainOfResponsibilityMB\IMembershipHandler.cs" />
     <Compile Include="DBSetting\Membership\HashPassword.cs" />

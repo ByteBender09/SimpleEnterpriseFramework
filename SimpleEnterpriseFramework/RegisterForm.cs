@@ -1,17 +1,28 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using SEPFramework.Forms;
 using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
+using SimpleEnterpriseFramework.Factories;
 using SimpleEnterpriseFramework.InterfaceForm;
 
 
 namespace SimpleEnterpriseFramework
 {
-    public partial class RegisterForm : Form, IRegisterForm
+    public partial class RegisterForm : SEPForm, IRegisterForm
     {
-        public RegisterForm()
+        private Panel panel2 = new Panel();
+        public RegisterForm() : this("Register")
+        {
+
+        }
+        public RegisterForm(string name) : base(name, "Register Form", new Size(width: 800, height: 480))
         {
             InitializeComponent();
+
+            FactoryPanel factoryPanel = new FactoryPanel();
+            factoryPanel.CreateFLPanelControls(panel2, "panel2", new Size(468, 452), new Point(333, -1), 3, SystemColors.ButtonHighlight);
 
             Button btnRegister = new SEPButtonBuilder()
                 .WithName("btnRegister")
@@ -23,6 +34,19 @@ namespace SimpleEnterpriseFramework
                 .WithEventHandler((sender, e) => { register_Click(sender, e); })
                 .Build();
 
+            panel2.SuspendLayout();
+            panel2.Controls.Add(isShow);
+            panel2.Controls.Add(pictureBox3);
+            panel2.Controls.Add(txtRePassword);
+            panel2.Controls.Add(label9);
+            panel2.Controls.Add(linkLabel1);
+            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(txtPasswordRegister);
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(txtUserNameRegister);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(label6);
             panel2.Controls.Add(btnRegister);
             Controls.Add(panel2);
             panel2.ResumeLayout(false);

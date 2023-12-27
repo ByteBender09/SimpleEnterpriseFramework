@@ -191,7 +191,6 @@ namespace SimpleEnterpriseFramework
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(246)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(1540, 783);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.panelHeading);
             this.Controls.Add(this.panel1);

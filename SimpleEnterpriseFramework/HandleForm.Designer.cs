@@ -75,7 +75,6 @@ namespace SimpleEnterpriseFramework
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 450);
             this.Controls.Add(this.panelBtn);
             this.Name = "HandleForm";
             this.Padding = new System.Windows.Forms.Padding(5, 30, 30, 0);

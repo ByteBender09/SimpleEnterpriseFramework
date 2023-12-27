@@ -7,16 +7,54 @@ using SimpleEnterpriseFramework.DBSetting.Membership.HashPassword;
 using SimpleEnterpriseFramework.DBSetting.MemberShip;
 using SimpleEnterpriseFramework.InterfaceForm;
 using SimpleEnterpriseFramework.DependencyInjection;
+using SimpleEnterpriseFramework.Factories;
+using SEPFramework.Forms;
+using System.Xml.Linq;
 
 namespace SimpleEnterpriseFramework
 {
-    public partial class LoginForm : Form, ILoginForm
+    public partial class LoginForm : SEPForm, ILoginForm
     {
         public event EventHandler LoginClicked;
+        private TextBox txtUsernameLogin;
+        private TextBox txtPasswordLogin;
+        private Panel panel2 = new Panel();
 
-        public LoginForm()
+        public LoginForm() : this("Login")
+        {
+
+        }
+        public LoginForm(string name) : base(name, "Login Form", new Size(width: 800, height: 480))
         {
             InitializeComponent();
+
+            FactoryPanel factoryPanel = new FactoryPanel();
+            factoryPanel.CreateFLPanelControls(panel2, "panel2", new Size(468, 452), new Point(335, 0), 1, SystemColors.ButtonHighlight);
+
+            txtUsernameLogin = new SEPTextBoxBuilder()
+                .WithName("txtUsernameLogin")
+                .WithText("")
+                .WithTabIndex(9)
+                .WithTabStop(true)
+                .WithForeColor(SystemColors.InfoText)
+                .WithBorderStyle(BorderStyle.None)
+                .WithSize(new Size(306, 20))
+                .WithLocation(new Point(111, 140))
+                .WithEnterEventHandler((sender, e) => { textUserName_Enter(sender, e); })
+                .WithLeaveEventHandler((sender, e) => { textUserName_Leave(sender, e); })
+                .Build();
+            txtPasswordLogin = new SEPTextBoxBuilder()
+                .WithName("txtPasswordLogin")
+                .WithText("Password")
+                .WithTabIndex(12)
+                .WithTabStop(false)
+                .WithForeColor(SystemColors.ScrollBar)
+                .WithBorderStyle(BorderStyle.None)
+                .WithSize(new Size(306, 20))
+                .WithLocation(new Point(111, 216))
+                .WithEnterEventHandler((sender, e) => { textPassword_Enter(sender, e); })
+                .WithLeaveEventHandler((sender, e) => { textPassword_Leave(sender, e); })
+                .Build();
 
             // Gắn sự kiện cho nút đăng nhập
             Button btnLogin = new SEPButtonBuilder()
@@ -29,6 +67,16 @@ namespace SimpleEnterpriseFramework
                 .WithEventHandler((sender, e) => { login_Click(sender, e); })
                 .Build();
 
+            panel2.SuspendLayout();
+            panel2.Controls.Add(isShow);
+            panel2.Controls.Add(linkLabel1);
+            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(txtUsernameLogin);
+            panel2.Controls.Add(txtPasswordLogin);
             panel2.Controls.Add(btnLogin);
             Controls.Add(panel2);
             panel2.ResumeLayout(false);
@@ -76,7 +124,7 @@ namespace SimpleEnterpriseFramework
         public void SetTables(List<string> tables)
         {
             // Xử lý logic hiển thị danh sách bảng sau khi đăng nhập thành công
-            MainForm main = new MainForm(tables);
+            MainForm main = new MainForm(tables, "Main Form");
             main.ShowDialog();
         }
 
@@ -142,7 +190,7 @@ namespace SimpleEnterpriseFramework
 
                     // Get list tables name in database
                     List<string> tables = SingletonDatabase.getInstance().GetAllTablesName();
-                    MainForm main = new MainForm(tables);
+                    MainForm main = new MainForm(tables, "Main Form");
                     main.ShowDialog();
                 }
                 else
