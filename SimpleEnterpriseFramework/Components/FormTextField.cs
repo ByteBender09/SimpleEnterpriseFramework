@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Drawing;
 
 namespace SimpleEnterpriseFramework
@@ -59,14 +58,6 @@ namespace SimpleEnterpriseFramework
         {
             _label.Text = labelText;
             _textBox.Text = value;
-        }
-
-        public static List<FormTextField> CreateFormControlList(Dictionary<string, string> labelValuePairs)
-        {
-            List<FormTextField> list = new List<FormTextField>();
-            foreach (string label in labelValuePairs.Keys)
-                list.Add(new FormTextField(label, labelValuePairs[label]));
-            return list;
         }
     }
 }

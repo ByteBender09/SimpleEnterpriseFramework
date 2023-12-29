@@ -43,12 +43,6 @@ public class SEPTextBoxBuilder
         return this;
     }
 
-    public SEPTextBoxBuilder WithBackColor(Color backColor)
-    {
-        _textBox.BackColor = backColor;
-        return this;
-    }
-
     public SEPTextBoxBuilder WithBorderStyle(BorderStyle borderStyle)
     {
         _textBox.BorderStyle = borderStyle;
@@ -64,18 +58,6 @@ public class SEPTextBoxBuilder
     public SEPTextBoxBuilder WithSize(Size size)
     {
         _textBox.Size = size;
-        return this;
-    }
-
-    public SEPTextBoxBuilder WithAnchorStyles(AnchorStyles anchorStyles)
-    {
-        _textBox.Anchor = anchorStyles;
-        return this;
-    }
-
-    public SEPTextBoxBuilder WithEventHandler(EventHandler eh)
-    {
-        _textBox.Click += eh;
         return this;
     }
 

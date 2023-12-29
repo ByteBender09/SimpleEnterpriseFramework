@@ -10,7 +10,6 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
     class MySqlDAO : DatabaseDAO
     {
         // Constructor
-        private readonly ILogger textFileLogger = new TextFileLogger();
 
         public MySqlDAO(string connection)
         {
@@ -68,7 +67,7 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             }
         }
 
-        private bool Authentication(string username, string password)
+        public override bool Authentication(string username, string password)
         {
             string sql = $"SELECT * FROM member WHERE username = '{username}'";
             DataTable data = databaseProcessor.GetAllData(sql);

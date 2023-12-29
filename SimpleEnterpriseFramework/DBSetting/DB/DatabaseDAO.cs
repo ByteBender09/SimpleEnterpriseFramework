@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SimpleEnterpriseFramework.Logger;
+using System.Collections.Generic;
 using System.Data;
 
 namespace SimpleEnterpriseFramework.DBSetting.DB
@@ -6,6 +7,7 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
     public abstract class DatabaseDAO
     {
         protected DatabaseProcessor databaseProcessor;
+        protected readonly ILogger textFileLogger = new TextFileLogger();
 
         //get data from table
         public abstract DataTable GetAllData(string tableName);
@@ -13,6 +15,8 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
         public abstract string GetPrimaryKey(string tableName);
         //get all _fields name
         public abstract List<string> GetAllFieldsName(string tableName);
+        //authen
+        public abstract bool Authentication(string username, string password);
         //insert
         public abstract bool Insert(Dictionary<string, object> data, string tableName);
         //delete

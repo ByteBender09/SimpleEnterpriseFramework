@@ -118,7 +118,6 @@
     <Compile Include="DBSetting\Membership\ChainOfResponsibilityMB\LogInCOR.cs" />
     <Compile Include="DBSetting\Membership\Membership.cs" />
     <Compile Include="DBSetting\Membership\ChainOfResponsibilityMB\RegisterCOR.cs" />
-    <Compile Include="DBSetting\MySQL\MySQL.cs" />
     <Compile Include="DBSetting\SingletonDatabase.cs" />
     <Compile Include="DependencyInjection\IoCContainer.cs" />
     <Compile Include="Factories\FactoryPanel.cs" />

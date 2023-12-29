@@ -14,31 +14,33 @@ public class TextFileLogger : ILogger
     }
 }
 
-public class ErrorLogger : ILogger
+public abstract class LoggerDecorator : ILogger
 {
-    private readonly ILogger _logger;
+    protected readonly ILogger _logger;
 
-    public ErrorLogger(ILogger logger)
+    public LoggerDecorator(ILogger logger)
     {
         _logger = logger;
     }
 
-    public void Log(string message)
+    public abstract void Log(string message);
+}
+
+public class ErrorLogger : LoggerDecorator
+{
+    public ErrorLogger(ILogger logger) : base(logger) { }
+
+    public override void Log(string message)
     {
         _logger.Log($"[ERROR] {DateTime.Now}: {message}");
     }
 }
 
-public class SuccessLogger : ILogger
+public class SuccessLogger : LoggerDecorator
 {
-    private readonly ILogger _logger;
+    public SuccessLogger(ILogger logger) : base(logger) { }
 
-    public SuccessLogger(ILogger logger)
-    {
-        _logger = logger;
-    }
-
-    public void Log(string message)
+    public override void Log(string message)
     {
         _logger.Log($"[SUCCESS] {DateTime.Now}: {message}");
     }

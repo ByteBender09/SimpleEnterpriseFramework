@@ -11,8 +11,6 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
     class SqlServerDAO : DatabaseDAO
     {
         //constructor
-        ILogger textFileLogger = new TextFileLogger();
-
         public SqlServerDAO(string connection)
         {
             databaseProcessor = new SqlServerProcessor(connection);
@@ -67,7 +65,7 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             }
         }
 
-        private bool Authentication(string username, string password)
+        public override bool Authentication(string username, string password)
         {
             string sql = $"select * from member where username = '{username}'";
             DataTable data = databaseProcessor.GetAllData(sql);
