@@ -18,8 +18,6 @@ namespace SEPFramework.Forms
         // This panel contains main content in the center of form
         protected Panel panelMain;
 
-        protected Label _labelTitle = new Label();
-
         private SEPForm()
         {
             MinimumSize = t_minSize;
@@ -34,7 +32,7 @@ namespace SEPFramework.Forms
         private void SetUpLayouts()
         {
             Controls.Clear();
-            Controls.AddRange(new Control[] { this.panelMain, this._labelTitle });
+            Controls.AddRange(new Control[] { this.panelMain });
         }
         private void SetUpSize(Size size)
         {
