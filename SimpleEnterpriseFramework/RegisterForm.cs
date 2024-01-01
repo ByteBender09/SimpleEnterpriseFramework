@@ -12,7 +12,7 @@ namespace SimpleEnterpriseFramework
 {
     public partial class RegisterForm : SEPForm, IRegisterForm
     {
-        private Panel panel2 = new Panel();
+        private readonly Panel panel2 = new Panel();
         public RegisterForm() : this("Register")
         {
 
@@ -22,7 +22,7 @@ namespace SimpleEnterpriseFramework
             InitializeComponent();
 
             FactoryPanel factoryPanel = new FactoryPanel();
-            factoryPanel.CreateFLPanelControls(panel2, "panel2", new Size(468, 452), new Point(333, -1), 3, SystemColors.ButtonHighlight);
+            panel2 = factoryPanel.CreateFLPanelControls("panel2", new Size(468, 452), new Point(333, -1), 3, SystemColors.ButtonHighlight);
 
             Button btnRegister = new SEPButtonBuilder()
                 .WithName("btnRegister")
@@ -150,6 +150,10 @@ namespace SimpleEnterpriseFramework
             }
             txtPasswordRegister.UseSystemPasswordChar = true;
             txtRePassword.UseSystemPasswordChar = true;
+        }
+        private void OnLoginClicked()
+        {
+            RegisterClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

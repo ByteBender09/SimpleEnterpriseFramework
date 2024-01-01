@@ -18,7 +18,7 @@ namespace SimpleEnterpriseFramework
         public event EventHandler LoginClicked;
         private TextBox txtUsernameLogin;
         private TextBox txtPasswordLogin;
-        private Panel panel2 = new Panel();
+        private readonly Panel panel2 = new Panel();
 
         public LoginForm() : this("Login")
         {
@@ -29,7 +29,7 @@ namespace SimpleEnterpriseFramework
             InitializeComponent();
 
             FactoryPanel factoryPanel = new FactoryPanel();
-            factoryPanel.CreateFLPanelControls(panel2, "panel2", new Size(468, 452), new Point(335, 0), 1, SystemColors.ButtonHighlight);
+            panel2 = factoryPanel.CreateFLPanelControls("panel2", new Size(468, 452), new Point(335, 0), 1, SystemColors.ButtonHighlight);
 
             txtUsernameLogin = new SEPTextBoxBuilder()
                 .WithName("txtUsernameLogin")

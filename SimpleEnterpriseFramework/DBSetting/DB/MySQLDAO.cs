@@ -94,17 +94,6 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
             return false;
         }
 
-        public override bool SignOut(string username)
-        {
-            string sql = $"UPDATE member SET isLogin = false WHERE username = '{username}'";
-            if (databaseProcessor.QueryData(sql) != 0)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         // Override functions for CRUD
         public override DataTable GetAllData(string tableName)
         {

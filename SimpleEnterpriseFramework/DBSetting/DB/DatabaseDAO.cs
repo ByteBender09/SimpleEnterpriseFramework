@@ -31,7 +31,5 @@ namespace SimpleEnterpriseFramework.DBSetting.DB
         public abstract bool CheckUserLogin(string username, string password);
         //create new user
         public abstract bool CreateNewUser(string username, string password);
-        //user sign out
-        public abstract bool SignOut(string username);
     }
 }
