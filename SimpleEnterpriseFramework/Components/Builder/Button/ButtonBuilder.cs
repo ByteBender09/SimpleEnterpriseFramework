@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-public class SEPButtonBuilder
+public class SEPButtonBuilder : IButtonBuilder
 {
     private Button _button;
 
@@ -16,43 +16,43 @@ public class SEPButtonBuilder
         _button.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
     }
 
-    public SEPButtonBuilder WithName(string name)
+    public IButtonBuilder WithName(string name)
     {
         _button.Name = name;
         return this;
     }
 
-    public SEPButtonBuilder WithText(string text)
+    public IButtonBuilder WithText(string text)
     {
         _button.Text = text;
         return this;
     }
 
-    public SEPButtonBuilder WithBackColor(Color backColor)
+    public IButtonBuilder WithBackColor(Color backColor)
     {
         _button.BackColor = backColor;
         return this;
     }
 
-    public SEPButtonBuilder WithForeColor(Color foreColor)
+    public IButtonBuilder WithForeColor(Color foreColor)
     {
         _button.ForeColor = foreColor;
         return this;
     }
 
-    public SEPButtonBuilder WithLocation(Point location)
+    public IButtonBuilder WithLocation(Point location)
     {
         _button.Location = location;
         return this;
     }
 
-    public SEPButtonBuilder WithSize(Size size)
+    public IButtonBuilder WithSize(Size size)
     {
         _button.Size = size;
         return this;
     }
 
-    public SEPButtonBuilder WithImage(Image image)
+    public IButtonBuilder WithImage(Image image)
     {
         _button.Image = image;
         _button.RightToLeft = RightToLeft.No;
@@ -66,33 +66,33 @@ public class SEPButtonBuilder
         return this;
     }
 
-    public SEPButtonBuilder WithAnchorStyles(AnchorStyles anchorStyles)
+    public IButtonBuilder WithAnchorStyles(AnchorStyles anchorStyles)
     {
         _button.Anchor = anchorStyles;
         return this;
     }
 
-    public SEPButtonBuilder WithEventHandler(EventHandler eh)
+    public IButtonBuilder WithEventHandler(EventHandler eh)
     {
         _button.Click += eh;
+        return this;
+    }
+
+    public IButtonBuilder WithMouseEnterEventHandler(EventHandler handler)
+    {
+        _button.MouseEnter += handler;
+        return this;
+    }
+
+    public IButtonBuilder WithMouseLeaveEventHandler(EventHandler handler)
+    {
+        _button.MouseLeave += handler;
         return this;
     }
 
     public Button Build()
     {
         return _button;
-    }
-
-    public SEPButtonBuilder WithMouseEnterEventHandler(EventHandler handler)
-    {
-        _button.MouseEnter += handler;
-        return this;
-    }
-
-    public SEPButtonBuilder WithMouseLeaveEventHandler(EventHandler handler)
-    {
-        _button.MouseLeave += handler;
-        return this;
     }
 }
 
