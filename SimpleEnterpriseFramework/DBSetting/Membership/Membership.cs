@@ -32,13 +32,13 @@ namespace SimpleEnterpriseFramework.DBSetting.MemberShip
             return false;
         }
 
-        public bool Logout(string username)
-        {
-            if (databaseDAO.SignOut(username))
-            {
-                return true;
-            }
-            return false;
-        }
+        //public bool Logout(string username)
+        //{
+        //    if (databaseDAO.SignOut(username))
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
 }
